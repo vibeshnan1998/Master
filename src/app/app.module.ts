@@ -47,7 +47,6 @@ import { AngularFireAuthModule} from '@angular/fire/auth';
     CityViewComponent,
     ToolbarComponent,
     LoginComponent,
-    AngularFireAuthModule
   ],
   imports: [
     BrowserModule,

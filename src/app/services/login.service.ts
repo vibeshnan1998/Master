@@ -12,4 +12,10 @@ login() {
   console.log('Redirecting to google provider');
   this.afauth.auth.signInWithRedirect(new auth.GoogleAuthProvider());
 }
+logout() {
+  this.afauth.auth.signOut();
+}
+getloggedinuser() {
+ return  this.afauth.authState;
+}
 }

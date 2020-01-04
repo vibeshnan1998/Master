@@ -7,14 +7,22 @@ import { LoginService } from 'src/app/services/login.service';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-
+user: firebase.User;
   constructor(private service: LoginService) { }
 
   ngOnInit() {
+    this.service.getloggedinuser().subscribe(user => {
+      console.log(user);
+      this.user = user;
+    });
   }
   LoginG() {
     console.log('logging in....');
     this.service.login();
+  }
+  LogoutG() {
+    console.log('logging in....');
+    this.service.logout();
   }
 
 }
