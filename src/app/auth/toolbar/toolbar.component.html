@@ -1,0 +1,13 @@
+<button mat-mini-fab id="toolbar-avatar" color="accent"
+[ngStyle]="{'background-image':'url(' + user?.photoURL + ')'}"
+[matMenuTriggerFor]="avatardrop" *ngIf="user"></button>
+
+<mat-menu #avatardrop="matMenu">
+    <mat-card>
+    <mat-card-header>
+        <mat-card-title>{{user?.displayName}}</mat-card-title>
+        <mat-card-subtitle>{{user?.email}}</mat-card-subtitle>
+    </mat-card-header>
+ </mat-card>
+    <button mat-menu-item class="btn btn-warning btn-xs" (click)="logout()"><mat-icon>person_add_disabled</mat-icon>Log Out</button>
+</mat-menu>

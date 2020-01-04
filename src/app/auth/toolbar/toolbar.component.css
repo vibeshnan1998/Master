@@ -1,0 +1,10 @@
+#toolbar-avatar {
+background-size: cover;
+box-shadow: none ;
+}
+button {
+    outline: none;
+    font-size: large;
+    font-weight: bolder;
+    font-stretch: expanded;
+}

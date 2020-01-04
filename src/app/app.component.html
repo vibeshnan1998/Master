@@ -5,7 +5,8 @@
         <span><a routerLink='/country' routerLinkActive="active">Country</a></span>
         <span><a routerLink='/state'  routerLinkActive="active">State</a></span>
         <span><a routerLink='/city'  routerLinkActive="active">City</a></span>
-        <span><app-login></app-login></span>
+        <span ><app-login></app-login></span><span *ngIf="user">|</span>
+        <span><app-toolbar></app-toolbar></span>
         </div>
         </mat-toolbar>
         <h2>{{user?.displayName}}</h2>
