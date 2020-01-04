@@ -30,6 +30,7 @@ import { StateService } from './services/state.service';
 import { CityService } from './services/city.service';
 import { ToolbarComponent } from './auth/toolbar/toolbar.component';
 import { LoginComponent } from './auth/login/login.component';
+import { AngularFireAuthModule} from '@angular/fire/auth';
 @NgModule({
   declarations: [
     AppComponent,
@@ -45,7 +46,8 @@ import { LoginComponent } from './auth/login/login.component';
     StateViewComponent,
     CityViewComponent,
     ToolbarComponent,
-    LoginComponent
+    LoginComponent,
+    AngularFireAuthModule
   ],
   imports: [
     BrowserModule,
@@ -57,7 +59,8 @@ import { LoginComponent } from './auth/login/login.component';
     ReactiveFormsModule,
     AngularFireDatabaseModule,
     AngularFireModule.initializeApp(environment.firebaseConfig),
-    FormsModule
+    FormsModule,
+    AngularFireAuthModule
   ],
   providers: [RegionService, CountryService, StateService, CityService],
   bootstrap: [AppComponent],
