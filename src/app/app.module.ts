@@ -63,6 +63,6 @@ import { AngularFireAuthModule} from '@angular/fire/auth';
   ],
   providers: [RegionService, CountryService, StateService, CityService],
   bootstrap: [AppComponent],
-  entryComponents: [StateViewComponent, EntryComponent, CountryViewComponent]
+  entryComponents: [StateViewComponent, EntryComponent, CountryViewComponent, CityViewComponent]
 })
 export class AppModule { }

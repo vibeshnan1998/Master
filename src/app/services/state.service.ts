@@ -59,6 +59,15 @@ updatestate(state) {
 populate(state) {
   this.stateform.setValue( _.omit(state, 'countryname'));
 }
+getstateName($code) {
+  if ($code === '0') {
+    return '';
+  } else {
+      return _.find(this.array, (obj) => {
+         return obj.$code === $code;
+        }).description;
+    }
+}
 
 
 }

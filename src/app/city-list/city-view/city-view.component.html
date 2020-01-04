@@ -1,1 +1,52 @@
-<p>city-view works!</p>
+
+        
+<form [formGroup]="service.cityform"  (submit)="onsubmit()" min-width="200px" min-height="300px">
+   
+    <mat-toolbar color="primary" width="auto">
+            <span>{{service.cityform.controls['$code'].value? "Modify Country":"New Country"}}</span>
+        
+     <span class="fill-remainings"></span>   
+     <span>  <button mat-button matSuffix mat-icon-button arial-label="Clear" tabindex="-1" (click)="onclose()"><mat-icon>close</mat-icon></button></span>      
+    </mat-toolbar><br>
+    <br>
+    <mat-grid-list cols="1" rowHeight="300px" min-width="100px">
+        <mat-grid-tile>
+            <div class="controles-container"> 
+                <mat-form-field>
+                     <mat-select formControlName="state" placeholder="State">
+                        <mat-option>None</mat-option>
+                        <ng-container *ngFor = "let sta of Sservice.array" >
+                            <mat-option value ="{{sta.$code}}">{{sta.description}}</mat-option>
+                        </ng-container>
+                        
+                    </mat-select>
+                </mat-form-field>
+                <mat-form-field>
+                    <input maxlength="3" formControlName="$code" matInput placeholder="Code*" tabindex="1" autocomplete="off" appOnlynumbers>
+                    <mat-error *ngIf="service.cityform.controls['$code'].errors?.required">the field should not be empty</mat-error>
+                </mat-form-field>
+                <mat-form-field>
+                    <input maxlength="25" formControlName="description" matInput placeholder="Description*" tabindex="2" autocomplete="off" appOnlycharacter>
+                    <mat-error *ngIf="service.cityform.controls['description'].errors?.required">the field should not be empty</mat-error>
+                  
+                </mat-form-field>
+                
+                <h2 class="example-margin">Status</h2>
+                
+                    <mat-slide-toggle  [checked]="status"
+                          class="example-margin" color="primary" (change)="toggle($event)"
+                          formControlName="status" >
+                          <label class="labeltoggle">{{lstatus}}</label>
+                    </mat-slide-toggle>
+
+                    <div class="button-row">                    
+             <button mat-raised-button class="btn btn-warning btn-xs" type="submit"  [disabled]="service.cityform.invalid" >save</button>
+             |<button mat-raised-button class="btn btn-primary btn-xs"
+                 (click)="onclear()" tabIndex="-1">Clear</button>
+            </div>
+             </div>
+            </mat-grid-tile>
+    </mat-grid-list>
+
+  
+</form>

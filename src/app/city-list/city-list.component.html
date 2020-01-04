@@ -1,1 +1,64 @@
-<p>city-list works!</p>
+
+<div class="container">
+    <div search-div>
+        
+        <mat-form-field class="search-form-field" floatLabel="never">
+            <input matInput [(ngModel)]="searchkey" autocomplete="off" placeholder="search" (keyup)="applyFilter()">
+            <button mat-button matSuffix mat-icon-button arial-label="Clear" *ngIf="searchkey" (click)="onsearchclear()">
+                <mat-icon>close</mat-icon>
+            </button>
+        </mat-form-field>
+    </div><br>
+    
+            <mat-toolbar color="primary" class="mat-toool">
+          <span>List-view</span>
+          <span class="fill-remainings"></span>
+          <button mat-raised-button color="warn" (click)="oncreate()"><mat-icon>note</mat-icon>create</button>
+          </mat-toolbar><br>
+    <div class="mat-elevation-z8">
+        <mat-table [dataSource]="listdata" matSort>
+            <ng-container matColumnDef="statename" >
+                <mat-header-cell *matHeaderCellDef mat-sort-header>State</mat-header-cell>
+                <mat-cell *matCellDef="let element">{{element.statename}}</mat-cell>
+            </ng-container>
+            
+        <ng-container matColumnDef="code" >
+            <mat-header-cell *matHeaderCellDef mat-sort-header>Code</mat-header-cell>
+            <mat-cell *matCellDef="let element">{{element.$code}}</mat-cell>
+        </ng-container>
+        <ng-container matColumnDef="description" >
+                <mat-header-cell *matHeaderCellDef mat-sort-header>Description</mat-header-cell>
+                <mat-cell *matCellDef="let element">{{element.description}}</mat-cell>
+            </ng-container>
+    
+            <span class="fill-remainings"></span>
+    
+            <ng-container matColumnDef="status" >
+                    <mat-header-cell *matHeaderCellDef mat-sort-header>Active</mat-header-cell>
+                    <mat-cell *matCellDef="let element">{{element.status}}</mat-cell>
+                </ng-container>
+                <ng-container matColumnDef="actions">
+                        <mat-header-cell *matHeaderCellDef></mat-header-cell>
+                        <mat-cell *matCellDef="let row">
+                            <button mat-icon-button title="edit" (click)="onEdit(row)"><mat-icon>launch</mat-icon></button>
+                        </mat-cell>
+                    </ng-container>
+                    <ng-container matColumnDef="Loading" colspan="6">
+                            <mat-footer-cell *matFooterCellDef>loading...
+    
+                            </mat-footer-cell>
+                            
+                        </ng-container>
+                        <ng-container matColumnDef="nodata" colspan="6">
+                                <mat-footer-cell *matFooterCellDef>NoData    
+                                </mat-footer-cell>
+                                
+                            </ng-container>
+       <mat-header-row *matHeaderRowDef="displayedcolumns"></mat-header-row>
+       <mat-row *matRowDef="let row; columns:displayedcolumns"></mat-row> 
+       <mat-footer-row *matFooterRowDef="['Loading']" [ngClass]="{'hide': listdata!=null}"></mat-footer-row>
+       <mat-footer-row *matFooterRowDef="['nodata']" [ngClass]="{'hide':!(listdata!=null && listdata.data.length==0)}"></mat-footer-row>
+    </mat-table>
+    <mat-paginator [pageSizeOptions]="[5,10,15,20]" [pageSize]="5" showFirstLastButtons> </mat-paginator>
+    </div>
+    </div>
