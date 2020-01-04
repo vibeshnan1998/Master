@@ -28,6 +28,8 @@ import { CityViewComponent } from './city-list/city-view/city-view.component';
 import { CountryService } from './services/country.service';
 import { StateService } from './services/state.service';
 import { CityService } from './services/city.service';
+import { ToolbarComponent } from './auth/toolbar/toolbar.component';
+import { LoginComponent } from './auth/login/login.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -41,7 +43,9 @@ import { CityService } from './services/city.service';
     CityListComponent,
     CountryViewComponent,
     StateViewComponent,
-    CityViewComponent
+    CityViewComponent,
+    ToolbarComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
