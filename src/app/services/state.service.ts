@@ -9,7 +9,7 @@ export class StateService {
 
   array = [];
   constructor(private firebase: AngularFireDatabase) {
-    this.statelist = this.firebase.list('countries');
+    this.statelist = this.firebase.list('states');
     this.statelist.snapshotChanges().subscribe(
       list => {
         this.array = list.map( item => {
@@ -20,7 +20,6 @@ export class StateService {
         });
       });
    }
-
   statelist: AngularFireList<any>;
   stateform: FormGroup = new FormGroup ({
     country: new FormControl(0),
@@ -36,7 +35,7 @@ export class StateService {
       status: true
     });
   }
-  getState()  {
+  getstate()  {
     this.statelist = this.firebase.list('states');
     return this.statelist.snapshotChanges();
   }
@@ -56,9 +55,10 @@ updatestate(state) {
   }
     );
 }
-populate(state) {
-  this.stateform.setValue( _.omit(state, 'countryname'));
+populate(state: { country: any; $code: any; description: any; status: boolean; }) {
+  this.stateform.setValue(_.omit(state, 'countryname'));
 }
+
 getstateName($code) {
   if ($code === '0') {
     return '';

@@ -20,7 +20,7 @@ displayedcolumns: string[] = ['countryname', 'code', 'description', 'status', 'a
 @ViewChild(MatPaginator, {static: false}) paginator: MatPaginator;
 searchkey: string;
 ngOnInit() {
-this.service.getState().subscribe(
+this.service.getstate().subscribe(
 list => {
 const array = list.map(item => {
 const countryname = this.Cservice.getcountryName(item.payload.val().country);

@@ -11,7 +11,7 @@
     <br>
     <mat-grid-list cols="1" rowHeight="300px" min-width="100px">
         <mat-grid-tile>
-            <div class="controles-container">
+            <div class="controles-container"> 
                 <mat-form-field>
                      <mat-select formControlName="country" placeholder="Country">
                         <mat-option>None</mat-option>
@@ -24,7 +24,7 @@
                 <mat-form-field>
                     <input maxlength="3" formControlName="$code" matInput placeholder="Code*" tabindex="1" autocomplete="off" appOnlynumbers>
                     <mat-error *ngIf="service.stateform.controls['$code'].errors?.required">the field should not be empty</mat-error>
-                </mat-form-field><br><br>
+                </mat-form-field>
                 <mat-form-field>
                     <input maxlength="25" formControlName="description" matInput placeholder="Description*" tabindex="2" autocomplete="off" appOnlycharacter>
                     <mat-error *ngIf="service.stateform.controls['description'].errors?.required">the field should not be empty</mat-error>
@@ -39,9 +39,8 @@
                           <label class="labeltoggle">{{lstatus}}</label>
                     </mat-slide-toggle>
 
-                    
                     <div class="button-row">                    
-             <button mat-raised-button class="btn warning btn-xs" type="submit"  [disabled]="service.stateform.invalid" >save</button>
+             <button mat-raised-button class="btn btn-warning btn-xs" type="submit"  [disabled]="service.stateform.invalid" >save</button>
              |<button mat-raised-button class="btn btn-primary btn-xs"
                  (click)="onclear()" tabIndex="-1">Clear</button>
             </div>

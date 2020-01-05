@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { StateService } from 'src/app/services/state.service';
+import { StateService} from 'src/app/services/state.service';
 import { CountryService } from 'src/app/services/country.service';
 import { NotificationService } from 'src/app/services/notification.service';
 import { MatDialogRef, MatSlideToggleChange } from '@angular/material';
@@ -17,7 +17,7 @@ export class StateViewComponent implements OnInit {
                 private notificationService: NotificationService,
                 public dialogref: MatDialogRef<StateViewComponent>) { }
     ngOnInit() {
-  this.service.getState();
+  this.service.getstate();
     }
     toggle(event: MatSlideToggleChange) {
       console.log('toggle', event.checked);
@@ -56,5 +56,4 @@ export class StateViewComponent implements OnInit {
          this.service.initializeForm();
          this.dialogref.close();
        }
-
 }
