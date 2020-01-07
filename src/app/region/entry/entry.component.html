@@ -3,24 +3,25 @@
 <form [formGroup]="service.form"  (submit)="onsubmit()" min-width="200px">
    
     <mat-toolbar color="primary" width="auto">
-            <span>{{service.form.controls['$code'].value? "Modify Region":"New Region"}}</span>
+            <span>{{service.form.controls['$key'].value? "Modify Region":"New Region"}}</span>
         
-     <span class="fill-remainings"></span>   
-     <span>  <button mat-button matSuffix mat-icon-button arial-label="Clear" tabindex="1" (click)="onclose()"><mat-icon>close</mat-icon></button></span>      
+    <span class="fill-remainings"></span>   
+    <span>  <button mat-button matSuffix mat-icon-button arial-label="Clear" tabindex="1" (click)="onclose()"><mat-icon>close</mat-icon></button></span>      
     </mat-toolbar><br>
-    <br>
     <mat-grid-list cols="1" rowHeight="300px" min-width="100px">
         <mat-grid-tile>
             <div class="controles-container">
+                <input formControlName="$key" type="hidden">
                 <mat-form-field>
-                    <input maxlength="3" formControlName="$code" matInput placeholder="Code*" tabindex="2" autocomplete="off" appOnlynumbers>
-                    <mat-error *ngIf="service.form.controls['$code'].errors?.required">the field should not be empty</mat-error>
+                    <input maxlength="3" formControlName="code" matInput placeholder="Code*" tabindex="2" autocomplete="off" >
+                    <mat-error *ngIf="service.form.controls['code'].errors?.required">the field should not be empty</mat-error>
+                    <mat-error *ngIf="service.form.controls['code'].errors?.pattern">Enter only Alphabetic characters</mat-error>
                    
                 </mat-form-field><br><br>
                 <mat-form-field>
-                    <input maxlength="25" formControlName="description" matInput placeholder="Description*" tabindex="3" autocomplete="off" appOnlycharacter>
+                    <input maxlength="40" formControlName="description" matInput placeholder="Description*" tabindex="3" autocomplete="off" >
                     <mat-error *ngIf="service.form.controls['description'].errors?.required">the field should not be empty</mat-error>
-                  
+                    <mat-error *ngIf="service.form.controls['description'].errors?.pattern">Enter only  Alphabetic characters</mat-error>
                 </mat-form-field>
                 
                 <h2 class="example-margin">Status</h2>
@@ -35,7 +36,7 @@
                     
              <button mat-raised-button class="btn warning btn-xs" type="submit" tabindex="5"  [disabled]="service.form.invalid" >save</button>
              |<button mat-raised-button class="btn btn-primary btn-xs"
-                 (click)="onclear()" tabIndex="5">Clear</button>
+                 (click)="onclear()" tabIndex="5" [disabled]= "clear">Clear</button>
             </div>
              </div>
             </mat-grid-tile>

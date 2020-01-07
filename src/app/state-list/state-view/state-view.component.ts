@@ -11,7 +11,7 @@ import { MatDialogRef, MatSlideToggleChange } from '@angular/material';
 })
 export class StateViewComponent implements OnInit {
   private status = false;
-  lstatus = 'Active';
+  lstatus: string;
     constructor(private service: StateService,
                 private Cservice: CountryService,
                 private notificationService: NotificationService,
@@ -29,7 +29,7 @@ export class StateViewComponent implements OnInit {
       }
     }
     onclear() {
-      if (!this.service.stateform.get('$code').value && !this.service.stateform.get('description').value) {
+      if (!this.service.stateform.get('code').value && !this.service.stateform.get('description').value) {
         this.notificationService.success('Fields Are Now Empty To Fill');
         } else {
           this.notificationService.success('cleared successfully');
@@ -39,7 +39,7 @@ export class StateViewComponent implements OnInit {
      }
      onsubmit() {
        if ( this.service.stateform.valid) {
-         if (!this.service.stateform.get('$code').value) {
+         if (!this.service.stateform.get('$key').value) {
            this.service.insertstate(this.service.stateform.value);
            this.service.stateform.reset();
            this.service.initializeForm();

@@ -13,7 +13,7 @@ import { CountryViewComponent } from 'src/app/country-list/country-view/country-
 export class CityViewComponent implements OnInit {
 
   private status = false;
-  lstatus = 'Active';
+  lstatus: string;
     constructor(private service: CityService,
                 private Sservice: StateService,
                 private notificationService: NotificationService,
@@ -31,7 +31,7 @@ export class CityViewComponent implements OnInit {
       }
     }
     onclear() {
-      if (!this.service.cityform.get('$code').value && !this.service.cityform.get('description').value) {
+      if (!this.service.cityform.get('code').value && !this.service.cityform.get('description').value) {
         this.notificationService.success('Fields Are Now Empty To Fill');
         } else {
           this.notificationService.success('cleared successfully');
@@ -41,15 +41,15 @@ export class CityViewComponent implements OnInit {
      }
      onsubmit() {
        if ( this.service.cityform.valid) {
-         if (!this.service.cityform.get('$code').value) {
-           this.service.insertregion(this.service.cityform.value);
-           this.service.cityform.reset();
-           this.service.initializeForm();
-           this.notificationService.success('Submitted Successfully');
+         if (this.service.cityform.get('$key').value) {
+          this.service.updatecity(this.service.cityform.value);
+          this.notificationService.success('Updated Successfully');
+          this.dialogref.close();
               } else {
-                this.service.updateregion(this.service.cityform.value);
-                this.notificationService.success('Updated Successfully');
-                this.dialogref.close();
+                this.service.insertcity(this.service.cityform.value);
+                this.service.cityform.reset();
+                this.service.initializeForm();
+                this.notificationService.success('Submitted Successfully');
                      }
                    }
       }

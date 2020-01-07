@@ -25,7 +25,7 @@ list => {
 const array = list.map(item => {
 const countryname = this.Cservice.getcountryName(item.payload.val().country);
 return {
-$code: item.key,
+$key: item.key,
 countryname,
 ...item.payload.val()
 };

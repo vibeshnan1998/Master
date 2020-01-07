@@ -29,7 +29,7 @@ export class CountryViewComponent implements OnInit {
       }
     }
     onclear() {
-      if (!this.service.countryform.get('$code').value && !this.service.countryform.get('description').value) {
+      if (!this.service.countryform.get('code').value && !this.service.countryform.get('description').value) {
         this.notificationService.success('Fields Are Now Empty To Fill');
         } else {
           this.notificationService.success('cleared successfully');
@@ -39,7 +39,7 @@ export class CountryViewComponent implements OnInit {
      }
      onsubmit() {
        if ( this.service.countryform.valid) {
-         if (!this.service.countryform.get('$code').value) {
+         if (!this.service.countryform.get('$key').value) {
            this.service.insertregion(this.service.countryform.value);
            this.service.countryform.reset();
            this.service.initializeForm();

@@ -14,7 +14,7 @@ array = [];
       list => {
         this.array = list.map( item => {
           return {
-            $code: item.key,
+            $key: item.key,
             ...item.payload.val()
           };
         });
@@ -22,15 +22,17 @@ array = [];
    }
   countrylist: AngularFireList<any>;
   countryform: FormGroup = new FormGroup ({
+    $key: new FormControl(null),
     region: new FormControl(0),
-    $code: new FormControl('', [Validators.required, Validators.minLength(3)]),
+    code: new FormControl('', [Validators.required, Validators.minLength(3)]),
     description: new FormControl('', Validators.required),
     status: new FormControl('')
   });
   initializeForm() {
     this.countryform.setValue({
+      $key: null,
       region: 0,
-      $code: '',
+      code: '',
       description: '',
       status: true
     });
@@ -39,31 +41,32 @@ array = [];
     this.countrylist = this.firebase.list('countries');
     return this.countrylist.snapshotChanges();
   }
-  insertregion(country: { region: any; $code: any; description: any; status: boolean; }) {
+  insertregion(country: { region: any; code: any; description: any; status: boolean; }) {
     this.countrylist.push({
       region: country.region,
-      code: country.$code,
+      code: country.code,
       description: country.description,
       status: country.status
     });
 }
 updateregion(country) {
-  this.countrylist.update(country.$code, {
+  this.countrylist.update(country.code, {
     region: country.region,
+    code: country.code,
     description: country.description,
     status: country.status
   }
     );
 }
-populate(country: { region: any; $code: any; description: any; status: boolean; }) {
+populate(country: { $key: any; region: any; code: any; description: any; status: boolean; }) {
   this.countryform.setValue(_.omit(country, 'regionname'));
 }
-getcountryName($code) {
-  if ($code === '0') {
+getcountryName($key) {
+  if ($key === '0') {
     return '';
   } else {
       return _.find(this.array, (obj) => {
-         return obj.$code === $code;
+         return obj.$key === $key;
         }).description;
     }
 }

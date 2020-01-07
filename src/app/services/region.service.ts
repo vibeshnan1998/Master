@@ -7,27 +7,44 @@ import * as _ from 'lodash';
 })
 export class RegionService {
   regionlist: AngularFireList<any>;
+  pattern = '^[a-zA-Z]+$';
   array = [];
+  public clear;
   constructor(private firebase: AngularFireDatabase) {
     this.regionlist = this.firebase.list('regions');
     this.regionlist.snapshotChanges().subscribe(
       list => {
         this.array = list.map( item => {
           return {
-            $code: item.key,
+            $key: item.key,
             ...item.payload.val()
           };
         });
       });
   }
   form: FormGroup = new FormGroup({
-    $code: new FormControl('', Validators.required),
-    description: new FormControl('', [Validators.required]),
+    $key: new FormControl(null),
+    code: new FormControl('', [Validators.required, Validators.pattern(this.pattern)]),
+    description: new FormControl('', [Validators.required, Validators.pattern(this.pattern)]),
     status: new FormControl('')
   });
   initializeForm() {
     this.form.setValue({
-      $code: '',
+      $key: null,
+      code: '',
+      description: '',
+      status: true
+    });
+  }
+  /* clearForm() {
+    this.form.setValue({
+      code: '',
+      description: '',
+      status: true
+    }); */
+  clearform() {
+    this.form.setValue({
+      code: '',
       description: '',
       status: true
     });
@@ -36,15 +53,16 @@ export class RegionService {
     this.regionlist = this.firebase.list('regions');
     return this.regionlist.snapshotChanges();
   }
-  insertregion(region: { $code: any; description: any; status: boolean; }) {
+  insertregion(region) {
     this.regionlist.push({
-      code: region.$code,
+      code: region.code,
       description: region.description,
       status: region.status
     });
 }
 updateregion(region) {
-  this.regionlist.update(region.$code, {
+  this.regionlist.update(region.$key, {
+    code: region.code,
     description: region.description,
     status: region.status
   }
@@ -52,16 +70,17 @@ updateregion(region) {
 }
 populate(region) {
   this.form.setValue(region);
+
 }
 
 
 // region to country
-getregionnName($code) {
-  if ($code === '0') {
+getregionnName($key) {
+  if ($key === '0') {
     return '';
   } else {
       return _.find(this.array, (obj) => {
-        return obj.$code === $code;
+        return obj.$key === $key;
       }).description;
     }
 }

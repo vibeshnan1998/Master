@@ -2,8 +2,7 @@ import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import {RegionService} from '../../services/region.service';
 import {NotificationService} from '../../services/notification.service';
 import {MatDialogRef, MatSlideToggleChange, MatDialogConfig, MatDialog} from '@angular/material';
-import { AngularFireDatabase, AngularFireDatabaseModule, AngularFireObject } from 'angularfire2/database';
-import { AbstractControl } from '@angular/forms';
+
 @Component({
   selector: 'app-entry',
   templateUrl: './entry.component.html',
@@ -11,7 +10,8 @@ import { AbstractControl } from '@angular/forms';
 })
 export class EntryComponent implements OnInit {
  private status = true;
-lstatus = 'Active';
+ lstatus: string;
+ clear: boolean;
   constructor(private service: RegionService,
               private notificationService: NotificationService,
               public dialogref: MatDialogRef<EntryComponent>,
@@ -30,31 +30,28 @@ this.service.getRegion();
     }
   }
   onclear() {
-    this.dialogref.close();
-    this.service.initializeForm();
-    const dialogconfig = new MatDialogConfig();
-    dialogconfig.disableClose = true;
-    dialogconfig.autoFocus = true;
-    dialogconfig.width = '400px';
-    this.dialog.open(EntryComponent, dialogconfig);
-    /* if (!this.service.form.get('$code').value && !this.service.form.get('description').value) {
+    if ( this.service.form.get('$key').value) {
+     this.clear = true;
+   } else {
+    if (!this.service.form.get('code').value && !this.service.form.get('description').value) {
       this.notificationService.success('Fields Are Now Empty To Fill');
       } else {
+        this.service.initializeForm();
         this.notificationService.success('cleared successfully');
       }
-    this.service.form.reset(); */
    }
-
+   }
    onsubmit() {
      if ( this.service.form.valid) {
-       if (this.service.form.get('$code').value) {
+       if (this.service.form.get('$key').value) {
   this.service.updateregion(this.service.form.value);
   this.service.form.reset();
   this.dialogref.close();
-  this.notificationService.success('updated Successfully');
+  this.notificationService.update('updated Successfully');
        } else {
   this.service.insertregion(this.service.form.value);
   this.service.form.reset();
+  this.dialogref.close();
   this.service.initializeForm();
   this.notificationService.success('submitted Successfully');
      }

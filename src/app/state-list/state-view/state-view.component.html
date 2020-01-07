@@ -3,7 +3,7 @@
 <form [formGroup]="service.stateform"  (submit)="onsubmit()" min-width="200px" min-height="300px">
    
     <mat-toolbar color="primary" width="auto">
-            <span>{{service.stateform.controls['$code'].value? "Modify Country":"New Country"}}</span>
+            <span>{{service.stateform.controls['$key'].value? "Modify Country":"New Country"}}</span>
         
      <span class="fill-remainings"></span>   
      <span>  <button mat-button matSuffix mat-icon-button arial-label="Clear" tabindex="-1" (click)="onclose()"><mat-icon>close</mat-icon></button></span>      
@@ -16,14 +16,14 @@
                      <mat-select formControlName="country" placeholder="Country">
                         <mat-option>None</mat-option>
                         <ng-container *ngFor = "let cou of Cservice.array" >
-                            <mat-option value ="{{cou.$code}}">{{cou.description}}</mat-option>
+                            <mat-option value ="{{cou.$key}}">{{cou.code}}-{{cou.description}}</mat-option>
                         </ng-container>
                         
                     </mat-select>
                 </mat-form-field>
                 <mat-form-field>
-                    <input maxlength="3" formControlName="$code" matInput placeholder="Code*" tabindex="1" autocomplete="off" appOnlynumbers>
-                    <mat-error *ngIf="service.stateform.controls['$code'].errors?.required">the field should not be empty</mat-error>
+                    <input maxlength="3" formControlName="code" matInput placeholder="Code*" tabindex="1" autocomplete="off" appOnlynumbers>
+                    <mat-error *ngIf="service.stateform.controls['code'].errors?.required">the field should not be empty</mat-error>
                 </mat-form-field>
                 <mat-form-field>
                     <input maxlength="25" formControlName="description" matInput placeholder="Description*" tabindex="2" autocomplete="off" appOnlycharacter>

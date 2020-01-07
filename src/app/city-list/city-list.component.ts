@@ -25,7 +25,7 @@ list => {
 const array = list.map(item => {
   const statename = this.Sservice.getstateName(item.payload.val().state);
   return {
-  $code: item.key,
+  $key: item.key,
   statename,
   ...item.payload.val()
 };

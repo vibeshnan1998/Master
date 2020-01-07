@@ -14,7 +14,8 @@ export class CountryListComponent implements OnInit {
 
   constructor(private service: CountryService,
               private Rservice: RegionService,
-              private dialog: MatDialog) { }
+              private dialog: MatDialog) {
+              }
 listdata: MatTableDataSource<any>;
 displayedcolumns: string[] = ['regionname', 'code', 'description', 'status', 'actions'];
 @ViewChild(MatSort, {static: false}) sort: MatSort;
@@ -26,7 +27,7 @@ list => {
 const array = list.map(item => {
   const regionname = this.Rservice.getregionnName(item.payload.val().region);
   return {
-  $code: item.key,
+  $key: item.key,
   regionname,
   ...item.payload.val()
 };
@@ -34,6 +35,7 @@ const array = list.map(item => {
 this.listdata = new MatTableDataSource(array);
 this.listdata.sort = this.sort;
 this.listdata.paginator = this.paginator;
+console.log(array);
 });
 }
 onsearchclear() {

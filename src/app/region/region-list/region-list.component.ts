@@ -22,7 +22,7 @@ ngOnInit() {
       list => {
         const array = list.map(item => {
           return{
-            $code: item.key,
+            $key: item.key,
             ...item.payload.val()
           };
         });
