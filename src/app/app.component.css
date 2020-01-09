@@ -22,7 +22,7 @@ body {
 .appmatcard {
     border: none;
     outline: none;
-    color: rebeccapurple;
+    color: rgb(124, 27, 221);
 }
 #sidenavContainer {
     margin-top: 55px;
@@ -58,7 +58,7 @@ body {
 }
 
 #sidenav .menu-item:hover {
-  background: #eee;
+  background: rgb(75, 72, 252);
 }
 #sidenav .menu-item mat-icon {
     margin-right: 20px;
@@ -67,4 +67,7 @@ body {
 
 .dash-list h3 {
     padding: 12px;
+}
+button {
+    outline: none;
 }
