@@ -8,11 +8,13 @@ import * as _ from 'lodash';
 export class CityService {
   constructor(private firebase: AngularFireDatabase) { }
   citylist: AngularFireList<any>;
+  pattern = '^[a-zA-Z ]+$';
+  public clear;
   cityform: FormGroup = new FormGroup ({
     $key: new FormControl(null),
     state: new FormControl(0),
-    code: new FormControl('', Validators.required),
-    description: new FormControl('', Validators.required),
+    code: new FormControl('', [Validators.required, Validators.pattern(this.pattern)]),
+    description: new FormControl('', [Validators.required, Validators.pattern(this.pattern)]),
     status: new FormControl('')
   });
   initializeForm() {

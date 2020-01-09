@@ -11,14 +11,14 @@
     </div><br>
     
             <mat-toolbar color="primary" class="mat-toool">
-          <span>List-view</span>
+          <span>State</span>
           <span class="fill-remainings"></span>
-          <button mat-raised-button color="warn" (click)="oncreate()"><mat-icon>note</mat-icon>create</button>
+          <button mat-raised-button color="warn" class="btn btn-dark btn-xs" (click)="oncreate()"><mat-icon>note</mat-icon>create</button>
           </mat-toolbar><br>
     <div class="mat-elevation-z8">
         <mat-table [dataSource]="listdata" matSort>
             <ng-container matColumnDef="countryname" >
-                <mat-header-cell *matHeaderCellDef mat-sort-header>country</mat-header-cell>
+                <mat-header-cell *matHeaderCellDef mat-sort-header>Country</mat-header-cell>
                 <mat-cell *matCellDef="let element">{{element.countryname}}</mat-cell>
             </ng-container>
             

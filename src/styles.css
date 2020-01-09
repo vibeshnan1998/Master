@@ -23,7 +23,7 @@ div.container{
         
     }
     .mat-toool mat-toolbar{
-        padding: 1px;
+        padding: 5px;
     }
     span.fill-remainings{
         flex:1 1 auto;

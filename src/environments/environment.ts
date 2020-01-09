@@ -4,14 +4,15 @@
 
 export const environment = {
   production: false,
-  firebaseConfig : {
-    apiKey: 'AIzaSyC4I7fPCP5pNZhyeJKgkecAwNZtOQc7c_4',
-    authDomain: 'regioncrud-66558.firebaseapp.com',
-    databaseURL: 'https://regioncrud-66558.firebaseio.com',
-    projectId: 'regioncrud-66558',
-    storageBucket: 'regioncrud-66558.appspot.com',
-    messagingSenderId: '681420818573',
-    appId: '1:681420818573:web:a6c4de4e24f59f67b9bac4'
+  firebase : {
+    apiKey: 'AIzaSyDTOaTodCq9t0ivHRIgdrPUZTyg4Pip0W0',
+    authDomain: 'masters-a1653.firebaseapp.com',
+    databaseURL: 'https://masters-a1653.firebaseio.com',
+    projectId: 'masters-a1653',
+    storageBucket: 'masters-a1653.appspot.com',
+    messagingSenderId: '441888738783',
+    appId: '1:441888738783:web:6ef84148abaf78871a486a',
+    measurementId: 'G-GXNWKZCX4K'
   }
 };
 

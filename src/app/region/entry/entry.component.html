@@ -13,10 +13,10 @@
             <div class="controles-container">
                 <input formControlName="$key" type="hidden">
                 <mat-form-field>
-                    <input maxlength="3" formControlName="code" matInput placeholder="Code*" tabindex="2" autocomplete="off" >
+                    <input maxlength="3" formControlName="code" matInput placeholder="Code*"  tabindex="2" autocomplete="off">
                     <mat-error *ngIf="service.form.controls['code'].errors?.required">the field should not be empty</mat-error>
                     <mat-error *ngIf="service.form.controls['code'].errors?.pattern">Enter only Alphabetic characters</mat-error>
-                   
+                   <!-- <mat-error *ngIf="service.form.controls['code'].errors.matchValues">username</mat-error> -->
                 </mat-form-field><br><br>
                 <mat-form-field>
                     <input maxlength="40" formControlName="description" matInput placeholder="Description*" tabindex="3" autocomplete="off" >
@@ -34,9 +34,9 @@
 
                     <div class="button-row">
                     
-             <button mat-raised-button class="btn warning btn-xs" type="submit" tabindex="5"  [disabled]="service.form.invalid" >save</button>
+             <button mat-raised-button class="btn warning btn-xs" type="submit" tabindex="5"  [disabled]="service.form.invalid" >Save</button>
              |<button mat-raised-button class="btn btn-primary btn-xs"
-                 (click)="onclear()" tabIndex="5" [disabled]= "clear">Clear</button>
+                 (click)="onclear()" tabIndex="6" [disabled]= "clear">Clear</button>
             </div>
              </div>
             </mat-grid-tile>

@@ -14,6 +14,7 @@ import {ReactiveFormsModule, FormsModule} from '@angular/forms';
 // Angular firebase
 import {AngularFireModule} from '@angular/fire';
 import {AngularFireDatabaseModule} from '@angular/fire/database';
+import {AngularFirestoreModule} from '@angular/fire/firestore';
  // environments
 import {environment} from '../environments/environment';
 import { RegionListComponent } from './region/region-list/region-list.component';
@@ -31,6 +32,7 @@ import { CityService } from './services/city.service';
 import { ToolbarComponent } from './auth/toolbar/toolbar.component';
 import { LoginComponent } from './auth/login/login.component';
 import { AngularFireAuthModule} from '@angular/fire/auth';
+import { MyfilterpipePipe } from './models/pipes/myfilterpipe.pipe';
 @NgModule({
   declarations: [
     AppComponent,
@@ -47,6 +49,7 @@ import { AngularFireAuthModule} from '@angular/fire/auth';
     CityViewComponent,
     ToolbarComponent,
     LoginComponent,
+    MyfilterpipePipe,
   ],
   imports: [
     BrowserModule,
@@ -57,7 +60,8 @@ import { AngularFireAuthModule} from '@angular/fire/auth';
     MaterialModule,
     ReactiveFormsModule,
     AngularFireDatabaseModule,
-    AngularFireModule.initializeApp(environment.firebaseConfig),
+    AngularFireModule.initializeApp(environment.firebase),
+    AngularFirestoreModule,
     FormsModule,
     AngularFireAuthModule
   ],

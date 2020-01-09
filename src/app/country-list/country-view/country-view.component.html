@@ -6,43 +6,45 @@
             <span>{{service.countryform.controls['$key'].value? "Modify Country":"New Country"}}</span>
         
      <span class="fill-remainings"></span>   
-     <span>  <button mat-button matSuffix mat-icon-button arial-label="Clear" tabindex="-1" (click)="onclose()"><mat-icon>close</mat-icon></button></span>      
+     <span>  <button mat-button matSuffix mat-icon-button arial-label="Clear" tabindex="1" (click)="onclose()"><mat-icon>close</mat-icon></button></span>      
     </mat-toolbar><br>
     <br>
     <mat-grid-list cols="1" rowHeight="300px" min-width="100px">
         <mat-grid-tile>
             <div class="controles-container"> 
+                <input formControlName="$key" type="hidden">
                 <mat-form-field>
                      <mat-select formControlName="region" placeholder="Regioin">
                         <mat-option>None</mat-option>
                         <ng-container  *ngFor = "let reg of Rservice.array" >
-                            <mat-option   value ="{{reg.$key}}">{{reg.code}}-{{reg.description}}</mat-option>
+                            <mat-option  *ngIf="reg.status != false" value ="{{reg.$key}}" tabindex="2">{{reg.code}}-{{reg.description}}</mat-option>
                         </ng-container>
                         
                     </mat-select>
                 </mat-form-field>
                 <mat-form-field>
-                    <input maxlength="3" formControlName="code" matInput placeholder="Code*" tabindex="1" autocomplete="off" appOnlynumbers>
+                    <input maxlength="3" formControlName="code" matInput placeholder="Code*" tabindex="3" autocomplete="off">
                     <mat-error *ngIf="service.countryform.controls['code'].errors?.required">the field should not be empty</mat-error>
+                    <mat-error *ngIf="service.countryform.controls['code'].errors?.pattern">Enter only Alphabetic characters</mat-error>
                 </mat-form-field>
                 <mat-form-field>
-                    <input maxlength="25" formControlName="description" matInput placeholder="Description*" tabindex="2" autocomplete="off" appOnlycharacter>
+                    <input maxlength="25" formControlName="description" matInput placeholder="Description*" tabindex="4" autocomplete="off">
                     <mat-error *ngIf="service.countryform.controls['description'].errors?.required">the field should not be empty</mat-error>
-                  
+                    <mat-error *ngIf="service.countryform.controls['description'].errors?.pattern">Enter only Alphabetic characters</mat-error>
                 </mat-form-field>
                 
                 <h2 class="example-margin">Status</h2>
                 
                     <mat-slide-toggle  [checked]="status"
-                          class="example-margin" color="primary" (change)="toggle($event)"
+                          class="example-margin" color="primary" tabindex="5" (change)="toggle($event)"
                           formControlName="status" >
                           <label class="labeltoggle">{{lstatus}}</label>
                     </mat-slide-toggle>
 
                     <div class="button-row">                    
-             <button mat-raised-button class="btn warning btn-xs" type="submit"  [disabled]="service.countryform.invalid" >save</button>
+             <button mat-raised-button class="btn warning btn-xs" type="submit" tabindex="6" [disabled]="service.countryform.invalid" >Save</button>
              |<button mat-raised-button class="btn btn-primary btn-xs"
-                 (click)="onclear()" tabIndex="-1">Clear</button>
+                 (click)="onclear()" tabIndex="7" [disabled]= "clear">Clear</button>
             </div>
              </div>
             </mat-grid-tile>

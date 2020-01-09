@@ -12,7 +12,7 @@ user: firebase.User;
 
   ngOnInit() {
     this.service.getloggedinuser().subscribe( user => {
-      console.log('updating picture');
+      console.log('updating picture...');
       this.user = user;
     });
   }

@@ -1,19 +1,70 @@
-.navv {
-    justify-content: space-between;
-  }
-  a {
-      padding-right: 1rem;
-      text-decoration: none;
-      color: white;
-      display: inline-block
-  }
-  span a.active {
-      color: rgb(67, 252, 11);
-  }
+  @import "~@angular/material/prebuilt-themes/indigo-pink.css";
 
-   a:visited, a:link{
-    color: rgb(0, 0, 0);
+body {
+    font-family: Roboto, Arial, sans-serif;
+    padding: 0;
+    margin: 0;
+    position: static; overflow-y:auto
 }
-span a:hover{
-    color: rgb(255, 238, 0);
+
+#toolbarMenu {
+    cursor: pointer;
+    margin-right: 20px;
+}
+#mainToolbar .toolbar-spacer {
+    flex: 1 1 auto;
+}
+
+#mainToolbar .toolbar-icon {
+    cursor: pointer;
+    margin: 0 8px;
+}
+.appmatcard {
+    border: none;
+    outline: none;
+    color: rebeccapurple;
+}
+#sidenavContainer {
+    margin-top: 55px;
+    scroll-padding-bottom: disabled;
+}
+
+#sidenav {
+    width: 240px;
+}
+
+#sidenav.menu-close {
+    width: 70px
+}
+
+#sidenav.menu-open {
+    width: 240px
+}
+
+#sidenav .avatar {
+    background-image: url('http://i.pravatar.cc/300');
+    background-size: cover;
+}
+
+#sidenav .mat-list-item-content {
+    padding: 0;
+}
+
+#sidenav .menu-item {
+    width: 100%;
+    border-radius: 0;
+    text-align: left;
+    padding: 10px;
+}
+
+#sidenav .menu-item:hover {
+  background: #eee;
+}
+#sidenav .menu-item mat-icon {
+    margin-right: 20px;
+     
+}
+
+.dash-list h3 {
+    padding: 12px;
 }

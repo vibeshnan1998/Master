@@ -21,11 +21,14 @@ array = [];
       });
    }
   countrylist: AngularFireList<any>;
+  pattern = '^[a-zA-Z ]+$';
+  public clear;
+  jsonobj = JSON.stringify(this.array);
   countryform: FormGroup = new FormGroup ({
     $key: new FormControl(null),
     region: new FormControl(0),
-    code: new FormControl('', [Validators.required, Validators.minLength(3)]),
-    description: new FormControl('', Validators.required),
+    code: new FormControl('', [Validators.required, Validators.pattern(this.pattern)]),
+    description: new FormControl('', [Validators.required, Validators.pattern(this.pattern)]),
     status: new FormControl('')
   });
   initializeForm() {
@@ -41,7 +44,7 @@ array = [];
     this.countrylist = this.firebase.list('countries');
     return this.countrylist.snapshotChanges();
   }
-  insertregion(country: { region: any; code: any; description: any; status: boolean; }) {
+  insertcountry(country: { region: any; code: any; description: any; status: boolean; }) {
     this.countrylist.push({
       region: country.region,
       code: country.code,
@@ -49,8 +52,8 @@ array = [];
       status: country.status
     });
 }
-updateregion(country) {
-  this.countrylist.update(country.code, {
+updatecountry(country) {
+  this.countrylist.update(country.$key, {
     region: country.region,
     code: country.code,
     description: country.description,

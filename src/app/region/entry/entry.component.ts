@@ -2,6 +2,8 @@ import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import {RegionService} from '../../services/region.service';
 import {NotificationService} from '../../services/notification.service';
 import {MatDialogRef, MatSlideToggleChange, MatDialogConfig, MatDialog} from '@angular/material';
+import { AbstractControl } from '@angular/forms';
+import { JsonPipe } from '@angular/common';
 
 @Component({
   selector: 'app-entry',
@@ -12,10 +14,14 @@ export class EntryComponent implements OnInit {
  private status = true;
  lstatus: string;
  clear: boolean;
+ array = this.service.array;
+ jsonobj = JSON.stringify(this.array);
+ jsons = JSON.parse(this.jsonobj);
   constructor(private service: RegionService,
               private notificationService: NotificationService,
               public dialogref: MatDialogRef<EntryComponent>,
-              private dialog: MatDialog) { }
+              private dialog: MatDialog) {
+               }
   ngOnInit() {
 this.service.getRegion();
   }
@@ -62,4 +68,18 @@ this.service.getRegion();
        this.service.initializeForm();
        this.dialogref.close();
      }
-   }
+ /* code() {
+             {
+     // tslint:disable-next-line: prefer-for-of
+     for (let i = 0; i < this.jsons.length; i++) {
+      if (this.jsons[i].code === HTMLFormControlsCollection.bind('code')) {
+          return this.codev = true;
+      }
+  }
+     return this.codev = null;
+  }
+}
+}
+ */
+}
+

@@ -23,7 +23,12 @@ import { MatSelectModule } from '@angular/material';
   Material.MatPaginatorModule,
   Material.MatDialogModule,
   Material.MatMenuModule,
-  Material.MatSelectModule
+  Material.MatSelectModule,
+  Material.MatSidenavModule,
+  Material.MatListModule,
+  Material.MatButtonModule,
+  Material.MatBadgeModule,
+  Material.MatCardModule
   ],
   exports: [
     Material.MatToolbarModule,
@@ -40,7 +45,12 @@ import { MatSelectModule } from '@angular/material';
     Material.MatPaginatorModule,
   Material.MatDialogModule,
   Material.MatMenuModule,
-  Material.MatSelectModule
+  Material.MatSelectModule,
+  Material.MatSidenavModule,
+  Material.MatListModule,
+  Material.MatButtonModule,
+  Material.MatBadgeModule,
+  Material.MatCardModule
    ]
 })
 export class MaterialModule { }

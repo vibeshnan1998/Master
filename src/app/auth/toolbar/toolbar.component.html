@@ -1,6 +1,7 @@
 <button mat-mini-fab id="toolbar-avatar" color="accent"
 [ngStyle]="{'background-image':'url(' + user?.photoURL + ')'}"
 [matMenuTriggerFor]="avatardrop" *ngIf="user"></button>
+<button mat-mini-fab id="toolbar-avatar" color="accent"><mat-icon>settings</mat-icon></button>
 
 <mat-menu #avatardrop="matMenu">
     <mat-card>

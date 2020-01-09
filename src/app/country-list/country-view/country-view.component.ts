@@ -11,7 +11,11 @@ import { CountryService } from 'src/app/services/country.service';
 })
 export class CountryViewComponent implements OnInit {
   private status = false;
-  lstatus = 'Active';
+  lstatus: string;
+  clear: boolean;
+  array = this.service.array;
+ jsonobj = JSON.stringify(this.array);
+ jsons = JSON.parse(this.jsonobj);
     constructor(private service: CountryService,
                 private Rservice: RegionService,
                 private notificationService: NotificationService,
@@ -29,27 +33,32 @@ export class CountryViewComponent implements OnInit {
       }
     }
     onclear() {
-      if (!this.service.countryform.get('code').value && !this.service.countryform.get('description').value) {
-        this.notificationService.success('Fields Are Now Empty To Fill');
-        } else {
-          this.notificationService.success('cleared successfully');
-        }
-      this.service.initializeForm();
-      this.service.countryform.reset();
+      if ( this.service.countryform.get('$key').value) {
+        this.clear = true;
+      } else {
+       if (!this.service.countryform.get('code').value && !this.service.countryform.get('description').value) {
+         this.notificationService.success('Fields Are Now Empty To Fill');
+         } else {
+           this.service.initializeForm();
+           this.notificationService.success('cleared successfully');
+         }
+      }
      }
      onsubmit() {
-       if ( this.service.countryform.valid) {
-         if (!this.service.countryform.get('$key').value) {
-           this.service.insertregion(this.service.countryform.value);
-           this.service.countryform.reset();
-           this.service.initializeForm();
-           this.notificationService.success('Submitted Successfully');
-              } else {
-                this.service.updateregion(this.service.countryform.value);
-                this.notificationService.success('Updated Successfully');
-                this.dialogref.close();
-                     }
-                   }
+      if ( this.service.countryform.valid) {
+        if (this.service.countryform.get('$key').value) {
+   this.service.updatecountry(this.service.countryform.value);
+   this.service.countryform.reset();
+   this.dialogref.close();
+   this.notificationService.update('updated Successfully');
+        } else {
+   this.service.insertcountry(this.service.countryform.value);
+   this.service.countryform.reset();
+   this.dialogref.close();
+   this.service.initializeForm();
+   this.notificationService.success('submitted Successfully');
+      }
+     }
       }
        onclose() {
          this.service.countryform.reset();

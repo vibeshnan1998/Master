@@ -21,11 +21,14 @@ export class StateService {
       });
    }
   statelist: AngularFireList<any>;
+  pattern = '^[a-zA-Z ]+$';
+  public clear;
+  jsonobj = JSON.stringify(this.array);
   stateform: FormGroup = new FormGroup ({
     $key: new FormControl(null),
     country: new FormControl(0),
-    code: new FormControl('', [Validators.required]),
-    description: new FormControl('', Validators.required),
+    code: new FormControl('', [Validators.required, Validators.pattern(this.pattern)]),
+    description: new FormControl('', [Validators.required, Validators.pattern(this.pattern)]),
     status: new FormControl('')
   });
   initializeForm() {

@@ -12,6 +12,10 @@ import { MatDialogRef, MatSlideToggleChange } from '@angular/material';
 export class StateViewComponent implements OnInit {
   private status = false;
   lstatus: string;
+  clear: boolean;
+  array = this.service.array;
+ jsonobj = JSON.stringify(this.array);
+ jsons = JSON.parse(this.jsonobj);
     constructor(private service: StateService,
                 private Cservice: CountryService,
                 private notificationService: NotificationService,
@@ -29,27 +33,32 @@ export class StateViewComponent implements OnInit {
       }
     }
     onclear() {
-      if (!this.service.stateform.get('code').value && !this.service.stateform.get('description').value) {
-        this.notificationService.success('Fields Are Now Empty To Fill');
-        } else {
-          this.notificationService.success('cleared successfully');
-        }
-      this.service.initializeForm();
-      this.service.stateform.reset();
+      if ( this.service.stateform.get('$key').value) {
+        this.clear = true;
+      } else {
+       if (!this.service.stateform.get('code').value && !this.service.stateform.get('description').value) {
+         this.notificationService.success('Fields Are Now Empty To Fill');
+         } else {
+           this.service.initializeForm();
+           this.notificationService.success('cleared successfully');
+         }
+      }
      }
      onsubmit() {
-       if ( this.service.stateform.valid) {
-         if (!this.service.stateform.get('$key').value) {
-           this.service.insertstate(this.service.stateform.value);
-           this.service.stateform.reset();
-           this.service.initializeForm();
-           this.notificationService.success('Submitted Successfully');
-              } else {
-                this.service.updatestate(this.service.stateform.value);
-                this.notificationService.success('Updated Successfully');
-                this.dialogref.close();
-                     }
-                   }
+      if ( this.service.stateform.valid) {
+        if (this.service.stateform.get('$key').value) {
+   this.service.updatestate(this.service.stateform.value);
+   this.service.stateform.reset();
+   this.dialogref.close();
+   this.notificationService.update('updated Successfully');
+        } else {
+   this.service.insertstate(this.service.stateform.value);
+   this.service.stateform.reset();
+   this.dialogref.close();
+   this.service.initializeForm();
+   this.notificationService.success('submitted Successfully');
+      }
+     }
       }
        onclose() {
          this.service.stateform.reset();

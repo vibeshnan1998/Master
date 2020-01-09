@@ -16,11 +16,13 @@ export class CountryListComponent implements OnInit {
               private Rservice: RegionService,
               private dialog: MatDialog) {
               }
+regi = this.Rservice.array;
 listdata: MatTableDataSource<any>;
 displayedcolumns: string[] = ['regionname', 'code', 'description', 'status', 'actions'];
 @ViewChild(MatSort, {static: false}) sort: MatSort;
 @ViewChild(MatPaginator, {static: false}) paginator: MatPaginator;
 searchkey: string;
+filterargs = {status: 'true'};
 ngOnInit() {
 this.service.getCountry().subscribe(
 list => {
@@ -35,7 +37,6 @@ const array = list.map(item => {
 this.listdata = new MatTableDataSource(array);
 this.listdata.sort = this.sort;
 this.listdata.paginator = this.paginator;
-console.log(array);
 });
 }
 onsearchclear() {
@@ -60,5 +61,8 @@ dialogconfig.disableClose = true;
 dialogconfig.autoFocus = true;
 dialogconfig.width = '400px';
 this.dialog.open(CountryViewComponent, dialogconfig);
+}
+filterUser(reg) {
+  return !reg.status === true;
 }
 }
