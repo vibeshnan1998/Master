@@ -20,40 +20,40 @@
         </mat-card-header>
       </mat-card><br>
       <mat-list-item  (click)="toggleMaster()">
-        <button class="menu-item"  mat-flat-button>
-          <mat-icon>settings_application</mat-icon>Masters
+        <button class="menu-item" title="{{'settings.masters' | translate}}" mat-flat-button>
+          <mat-icon>explore</mat-icon>{{'settings.masters' | translate}}
         <mat-icon *ngIf="!showMaster">chevron_right</mat-icon>
         <mat-icon *ngIf="showMaster">expand_more</mat-icon>
       </button>
       </mat-list-item>
       <mat-list-item *ngIf="showMaster">
-        <button class="menu-item" mat-flat-button routerLink='/region'>
+        <button class="menu-item" title="{{'settings.region' | translate}}" mat-flat-button routerLink='/region'>
           <mat-icon>apartment</mat-icon>
-          Region
+          {{'settings.region' | translate}}
         </button>
       </mat-list-item>
 
       <mat-list-item *ngIf="showMaster">
-        <button class="menu-item" mat-flat-button routerLink='/country'>
+        <button class="menu-item" title="{{'settings.country' | translate}}"mat-flat-button routerLink='/country'>
           <mat-icon>house</mat-icon>
-          Country
+          {{'settings.country' | translate}}
         </button>
       </mat-list-item>
       <mat-list-item *ngIf="showMaster">
-        <button class="menu-item" mat-flat-button routerLink='/state'>
+        <button class="menu-item" title="{{'settings.state' | translate}}" mat-flat-button routerLink='/state'>
           <mat-icon>meeting_room</mat-icon>
-          State
+          {{'settings.state' | translate}}
         </button>
       </mat-list-item>
       <mat-list-item *ngIf="showMaster">
-        <button class="menu-item" mat-flat-button routerLink='/city'>
+        <button class="menu-item" title="{{'settings.city' | translate}}" mat-flat-button routerLink='/city'>
           <mat-icon>kitchen</mat-icon>
-          City
+          {{'settings.city' | translate}}
         </button>
       </mat-list-item>
        <mat-list-item (click)="toggleMenu()">
-        <button class="menu-item"  mat-flat-button>
-          <mat-icon>settings_application</mat-icon>Language 
+        <button class="menu-item"  title="{{'settings.language' | translate}}" mat-flat-button>
+          <mat-icon>settings_application</mat-icon>{{'settings.language' | translate}} 
         <mat-icon *ngIf="!showMenu">chevron_right</mat-icon>
         <mat-icon *ngIf="showMenu">expand_more</mat-icon>
       </button>
@@ -65,19 +65,12 @@
           <button class="menu-item" mat-flat-button (click)="useLanguage('fr')"><mat-icon>dede</mat-icon>French</button>
           </mat-list-item>
       <mat-list-item>
-        <button class="menu-item" mat-flat-button>
+        <button class="menu-item" title="{{'settings.about' | translate}}"mat-flat-button>
           <mat-icon>help_outline</mat-icon>
-          About
+          {{'settings.about' | translate}}
         </button>
       </mat-list-item>
-      <mat-list-item>
-
-        <label>{{'settings.dropdown' | translate}}<mat-select placeholder="language" #langselect
-            (change)="translate.use(langselect.value)">
-            <mat-option *ngFor="let lang of translate.getLangs()" [value]="lang">{{lang}}</mat-option>
-          </mat-select>
-        </label>
-      </mat-list-item>
+      
 
 
     </mat-list>

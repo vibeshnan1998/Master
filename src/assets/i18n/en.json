@@ -1,6 +1,15 @@
 {
 "settings": {
     "dropdown":"Lang settings",
-    "setting" : "setting en"
+    "setting" : "setting en",
+    "masters" : "Masters",
+    "region" : "Region",
+    "country": "Country",
+    "state" : "State",
+    "city":"city",
+    "language" : "Language",
+    "english" : "English(en-us)",
+    "french" : "French",
+    "about" : "About"
 }
 }

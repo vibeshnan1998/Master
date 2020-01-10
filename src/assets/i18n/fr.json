@@ -1,6 +1,15 @@
 {
     "settings": {
-        "dropdown":"setting language",
-        "setting" : "setting fr"
+        "dropdown": "setting language",
+        "setting": "setting fr",
+        "masters": "Maîtrise",
+        "region": "Région",
+        "country": "Pays",
+        "state": "Etat",
+        "city":"Ville",
+        "language": "Langue",
+        "english": "English(en-us)",
+        "french": "French",
+        "about": "Sur"
     }
-    }
+}
