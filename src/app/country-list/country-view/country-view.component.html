@@ -18,6 +18,7 @@
                         <mat-option>None</mat-option>
                         <ng-container  *ngFor = "let reg of Rservice.array" >
                             <mat-option  *ngIf="reg.status != false" value ="{{reg.$key}}" tabindex="2">{{reg.code}}-{{reg.description}}</mat-option>
+                            <mat-error *ngIf="service.countryform.controls['region'].errors?.required">Field should not be empty</mat-error>
                         </ng-container>
                         
                     </mat-select>

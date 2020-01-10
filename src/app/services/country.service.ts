@@ -29,7 +29,7 @@ array = [];
     region: new FormControl(0),
     code: new FormControl('', [Validators.required, Validators.pattern(this.pattern)]),
     description: new FormControl('', [Validators.required, Validators.pattern(this.pattern)]),
-    status: new FormControl('')
+    status: new FormControl('', Validators.required)
   });
   initializeForm() {
     this.countryform.setValue({

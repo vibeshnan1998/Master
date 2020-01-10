@@ -1,78 +1,89 @@
 <mat-toolbar id="mainToolbar" color="primary">
-        <mat-icon
-          (click)="ontoolbarevent()"
-          id="toolbarMenu">subject</mat-icon>
-        VIBESHNAN
-        <span class="toolbar-spacer"></span>
-        <app-login></app-login>
-      </mat-toolbar>
-      
-      <mat-sidenav-container id="sidenavContainer" fullscreen>
-                <mat-sidenav mode="side" #sidenav id="sidenav" color="warning" [class.menu-open]="isMenuOpen" [class.menu-close]="!isMenuOpen" opened>
-          
-          <mat-list id="menus">
-            <mat-card class="appmatcard" *ngIf="user">
-              <mat-card-header>
-                <button 
-                  mat-card-avatar 
-                  class="avatar" [ngStyle]="{'background-image':'url(' + user1?.photoURL + ')'}"></button>
-      
-                <mat-card-title>{{user?.displayName}}</mat-card-title>
-                <mat-card-subtitle>{{user?.email}}</mat-card-subtitle>
-              </mat-card-header>
-            </mat-card><br>
-            <mat-list-item>
-              <button 
-              class="menu-item"
-                mat-flat-button routerLink='/region'>
-                <mat-icon>apartment</mat-icon>
-              Region</button>
-            </mat-list-item>
-      
-            <mat-list-item>
-                <button 
-                class="menu-item"
-                  mat-flat-button routerLink='/country'>
-                  <mat-icon>house</mat-icon>
-                Country</button>
-              </mat-list-item>
-              <mat-list-item>
-                <button 
-                class="menu-item"
-                  mat-flat-button routerLink='/state'>
-                  <mat-icon>meeting_room</mat-icon>
-                State</button>
-              </mat-list-item>
-              <mat-list-item>
-                <button 
-                class="menu-item"
-                  mat-flat-button routerLink='/city'>
-                  <mat-icon>kitchen</mat-icon>
-                City</button>
-              </mat-list-item>
-      
-              <mat-list-item>
-                  <button 
-                  class="menu-item"
-                    mat-flat-button>
-                    <mat-icon>settings_application</mat-icon>
-                  Settings</button>
-                </mat-list-item>
-                <mat-list-item>
-                  <button 
-                  class="menu-item"
-                    mat-flat-button>
-                    <mat-icon>help_outline</mat-icon>
-                About</button>
-                </mat-list-item>
-      
-          </mat-list>
-        </mat-sidenav>
-      
-        <mat-sidenav-content
-        [ngStyle]="{ 'margin-left.px': contentMargin }"
-        >
-        <router-outlet></router-outlet>    
-        </mat-sidenav-content>
-      </mat-sidenav-container>
-      
+  <mat-icon (click)="ontoolbarevent()" id="toolbarMenu">subject</mat-icon>
+  VIBESHNAN
+  <span class="toolbar-spacer"></span>
+  <app-login style="padding-bottom: 10px;"></app-login>
+</mat-toolbar>
+
+<mat-sidenav-container id="sidenavContainer" fullscreen>
+  <mat-sidenav mode="side" #sidenav id="sidenav" color="warning" [class.menu-open]="isMenuOpen"
+    [class.menu-close]="!isMenuOpen" opened>
+
+    <mat-list id="menus">
+      <mat-card class="appmatcard" *ngIf="user">
+        <mat-card-header>
+          <button mat-card-avatar class="avatar"
+            [ngStyle]="{'background-image':'url(' + user1?.photoURL + ')'}"></button>
+
+          <mat-card-title>{{user?.displayName}}</mat-card-title>
+          <!--  <mat-card-subtitle>{{user?.email}}</mat-card-subtitle> -->
+        </mat-card-header>
+      </mat-card><br>
+      <mat-list-item  (click)="toggleMaster()">
+        <button class="menu-item"  mat-flat-button>
+          <mat-icon>settings_application</mat-icon>Masters
+        <mat-icon *ngIf="!showMaster">chevron_right</mat-icon>
+        <mat-icon *ngIf="showMaster">expand_more</mat-icon>
+      </button>
+      </mat-list-item>
+      <mat-list-item *ngIf="showMaster">
+        <button class="menu-item" mat-flat-button routerLink='/region'>
+          <mat-icon>apartment</mat-icon>
+          Region
+        </button>
+      </mat-list-item>
+
+      <mat-list-item *ngIf="showMaster">
+        <button class="menu-item" mat-flat-button routerLink='/country'>
+          <mat-icon>house</mat-icon>
+          Country
+        </button>
+      </mat-list-item>
+      <mat-list-item *ngIf="showMaster">
+        <button class="menu-item" mat-flat-button routerLink='/state'>
+          <mat-icon>meeting_room</mat-icon>
+          State
+        </button>
+      </mat-list-item>
+      <mat-list-item *ngIf="showMaster">
+        <button class="menu-item" mat-flat-button routerLink='/city'>
+          <mat-icon>kitchen</mat-icon>
+          City
+        </button>
+      </mat-list-item>
+       <mat-list-item (click)="toggleMenu()">
+        <button class="menu-item"  mat-flat-button>
+          <mat-icon>settings_application</mat-icon>Language 
+        <mat-icon *ngIf="!showMenu">chevron_right</mat-icon>
+        <mat-icon *ngIf="showMenu">expand_more</mat-icon>
+      </button>
+      </mat-list-item>
+      <mat-list-item *ngIf="showMenu">
+        <button class="menu-item" mat-flat-button (click)="useLanguage('en')"><mat-icon>cdcddc</mat-icon>English</button>
+        </mat-list-item>
+        <mat-list-item *ngIf="showMenu">
+          <button class="menu-item" mat-flat-button (click)="useLanguage('fr')"><mat-icon>dede</mat-icon>French</button>
+          </mat-list-item>
+      <mat-list-item>
+        <button class="menu-item" mat-flat-button>
+          <mat-icon>help_outline</mat-icon>
+          About
+        </button>
+      </mat-list-item>
+      <mat-list-item>
+
+        <label>{{'settings.dropdown' | translate}}<mat-select placeholder="language" #langselect
+            (change)="translate.use(langselect.value)">
+            <mat-option *ngFor="let lang of translate.getLangs()" [value]="lang">{{lang}}</mat-option>
+          </mat-select>
+        </label>
+      </mat-list-item>
+
+
+    </mat-list>
+  </mat-sidenav>
+
+  <mat-sidenav-content [ngStyle]="{ 'margin-left.px': contentMargin }">
+    <router-outlet></router-outlet>
+  </mat-sidenav-content>
+</mat-sidenav-container>

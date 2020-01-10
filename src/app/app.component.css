@@ -23,6 +23,7 @@ body {
     border: none;
     outline: none;
     color: rgb(124, 27, 221);
+    padding: 20px;
 }
 #sidenavContainer {
     margin-top: 55px;
@@ -58,7 +59,7 @@ body {
 }
 
 #sidenav .menu-item:hover {
-  background: rgb(75, 72, 252);
+  background: rgb(128, 126, 230);
 }
 #sidenav .menu-item mat-icon {
     margin-right: 20px;

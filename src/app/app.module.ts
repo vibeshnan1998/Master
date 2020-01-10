@@ -32,7 +32,11 @@ import { CityService } from './services/city.service';
 import { ToolbarComponent } from './auth/toolbar/toolbar.component';
 import { LoginComponent } from './auth/login/login.component';
 import { AngularFireAuthModule} from '@angular/fire/auth';
-import { MyfilterpipePipe } from './models/pipes/myfilterpipe.pipe';
+// import ngx-translate and the http loader
+import {TranslateLoader, TranslateModule} from '@ngx-translate/core';
+import {TranslateHttpLoader} from '@ngx-translate/http-loader';
+import {HttpClient, HttpClientModule} from '@angular/common/http';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -49,7 +53,6 @@ import { MyfilterpipePipe } from './models/pipes/myfilterpipe.pipe';
     CityViewComponent,
     ToolbarComponent,
     LoginComponent,
-    MyfilterpipePipe,
   ],
   imports: [
     BrowserModule,
@@ -63,10 +66,22 @@ import { MyfilterpipePipe } from './models/pipes/myfilterpipe.pipe';
     AngularFireModule.initializeApp(environment.firebase),
     AngularFirestoreModule,
     FormsModule,
-    AngularFireAuthModule
+    AngularFireAuthModule,
+    HttpClientModule,
+    TranslateModule.forRoot({
+            loader: {
+                provide: TranslateLoader,
+                useFactory: HttpLoaderFactory,
+                deps: [HttpClient]
+            }
+        })
   ],
   providers: [RegionService, CountryService, StateService, CityService],
   bootstrap: [AppComponent],
   entryComponents: [StateViewComponent, EntryComponent, CountryViewComponent, CityViewComponent]
 })
 export class AppModule { }
+// required for AOT compilation
+export function HttpLoaderFactory(http: HttpClient) {
+  return new TranslateHttpLoader(http);
+}
