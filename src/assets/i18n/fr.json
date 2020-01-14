@@ -10,6 +10,8 @@
         "language": "Langue",
         "english": "English(en-us)",
         "french": "French",
-        "about": "Sur"
+        "about": "Sur",
+        "login": "S'identifier",
+        "logout":"Se déconnecter"
     }
 }

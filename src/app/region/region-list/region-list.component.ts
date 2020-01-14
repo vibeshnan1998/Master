@@ -3,6 +3,7 @@ import { RegionService } from 'src/app/services/region.service';
 import { MatTableDataSource, MatSort, MatPaginator } from '@angular/material';
 import {MatDialog, MatDialogConfig} from '@angular/material';
 import { EntryComponent } from '../entry/entry.component';
+import { ConfirmService } from 'src/app/dialog/confirm.service';
 @Component({
   selector: 'app-region-list',
   templateUrl: './region-list.component.html',
@@ -11,7 +12,8 @@ import { EntryComponent } from '../entry/entry.component';
 export class RegionListComponent implements OnInit {
 
   constructor(private service: RegionService,
-              private dialog: MatDialog) { }
+              private dialog: MatDialog,
+              private cdialog: ConfirmService) { }
 listdata: MatTableDataSource<any>;
 displayedcolumns: string[] = ['code', 'description', 'status', 'actions'];
 @ViewChild(MatSort, {static: false}) sort: MatSort;

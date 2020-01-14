@@ -11,7 +11,7 @@
 </div><br>
 
         <mat-toolbar color="primary" class="mat-toool">
-      <span>Region</span>
+      <span>{{'settings.region' | translate}}</span>
       <span class="fill-remainings"></span>
       <button mat-raised-button  class="btn btn-dark btn-xs" (click)="oncreate()"><mat-icon>note</mat-icon>create</button>
       </mat-toolbar><br>
@@ -19,11 +19,11 @@
     <mat-table [dataSource]="listdata" matSort>
     <ng-container matColumnDef="code" >
         <mat-header-cell *matHeaderCellDef mat-sort-header>Code</mat-header-cell>
-        <mat-cell *matCellDef="let element">{{element.code}}</mat-cell>
+        <mat-cell *matCellDef="let element" style="text-transform: uppercase;">{{element.code}}</mat-cell>
     </ng-container>
     <ng-container matColumnDef="description" >
             <mat-header-cell *matHeaderCellDef mat-sort-header>Description</mat-header-cell>
-            <mat-cell *matCellDef="let element">{{element.description}}</mat-cell>
+            <mat-cell *matCellDef="let element" style="text-transform: capitalize;">{{element.description}}</mat-cell>
         </ng-container>
 
         <span class="fill-remainings"></span>

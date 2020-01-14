@@ -1,4 +1,4 @@
 <button  mat-raised-button class="btn btn-primary btn-xs"
-                 (click)="LoginG()" tabIndex="-1" *ngIf="!user"><mat-icon>verified_user</mat-icon>Login</button>
+                 (click)="LoginG()" tabIndex="-1" *ngIf="!user"><mat-icon>verified_user</mat-icon>{{'settings.login'|translate}}</button>
  <button *ngIf="user" mat-raised-button class="btn btn-warning btn-xs"
-                 (click)="LogoutG()" tabIndex="-1"><mat-icon>verified_user</mat-icon>Logout</button>
+                 (click)="LogoutG()" tabIndex="-1"><mat-icon>verified_user</mat-icon>{{'settings.logout'|translate}}</button>

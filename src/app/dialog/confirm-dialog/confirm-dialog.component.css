@@ -1,0 +1,59 @@
+.confirm-dialog-container .mat-dialog-container {
+    border-radius: .25em .25em .25em .25em;
+    padding: 0px;
+}
+.confirm-dialog-container #no-button {
+    height:50px;
+    width:33.3%;
+    background-color: rgb(196, 189, 189);
+    color:rgb(20, 19, 19);
+    border-radius: 40px;
+    
+}
+.confirm-dialog-container #no-button:hover{
+    background:  rgb(255, 75, 62);
+}
+.confirm-dialog-container #yes-button {
+    height:50px;
+    width:33.3%;
+    background-color: rgb(196, 189, 189);
+    color:rgb(19, 18, 19);
+    border-radius: 40px;
+    
+}
+.confirm-dialog-container #yes-button:hover{
+    background:  darkcyan;
+}
+
+
+.confirm-dialog-container #cancel-button {
+    height:50px;
+    width:33.3%;
+    background-color: rgb(196, 189, 189);
+    color:rgb(0, 0, 0);
+    border-radius: 40px;
+    margin-left: auto;
+}
+.confirm-dialog-container #cancel-button:hover{
+    background:  rgb(232, 247, 30);
+}
+
+
+.confirm-dialog-container .content-container {
+    margin: 5px 5px 5px 5px;
+    color: rgb(0, 0, 0);
+    display:flex;
+}
+.confirm-dialog-container #close-icon{
+    margin-left: auto;
+    order:2;
+    font-weight: bolder;
+}
+.confirm-dialog-container #close-icon:hover {
+    cursor: pointer;
+}
+.confirm-dialog-container span.content-span{
+    padding: 35px 17px;
+    text-align: left;
+    font-size: 15px;
+}

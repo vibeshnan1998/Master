@@ -31,7 +31,7 @@ export class RegionService {
 
   form: FormGroup = new FormGroup({
     $key: new FormControl(null),
-    code: new FormControl('', [Validators.required, Validators.pattern(this.pattern), /* matchValues() */]),
+    code: new FormControl('', [Validators.required, Validators.pattern(this.pattern), matchValues(this.array) ]),
     description: new FormControl('', [Validators.required, Validators.pattern(this.pattern)]),
     status: new FormControl('')
   });

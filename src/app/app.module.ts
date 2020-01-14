@@ -36,6 +36,7 @@ import { AngularFireAuthModule} from '@angular/fire/auth';
 import {TranslateLoader, TranslateModule} from '@ngx-translate/core';
 import {TranslateHttpLoader} from '@ngx-translate/http-loader';
 import {HttpClient, HttpClientModule} from '@angular/common/http';
+import { ConfirmDialogComponent } from './dialog/confirm-dialog/confirm-dialog.component';
 
 @NgModule({
   declarations: [
@@ -53,6 +54,7 @@ import {HttpClient, HttpClientModule} from '@angular/common/http';
     CityViewComponent,
     ToolbarComponent,
     LoginComponent,
+    ConfirmDialogComponent,
   ],
   imports: [
     BrowserModule,
@@ -76,9 +78,9 @@ import {HttpClient, HttpClientModule} from '@angular/common/http';
             }
         })
   ],
-  providers: [RegionService, CountryService, StateService, CityService],
+  providers: [RegionService, CountryService, StateService, CityService, EntryComponent],
   bootstrap: [AppComponent],
-  entryComponents: [StateViewComponent, EntryComponent, CountryViewComponent, CityViewComponent]
+  entryComponents: [StateViewComponent, EntryComponent, CountryViewComponent, CityViewComponent, ConfirmDialogComponent]
 })
 export class AppModule { }
 // required for AOT compilation
