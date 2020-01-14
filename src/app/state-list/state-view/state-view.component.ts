@@ -10,15 +10,15 @@ import { MatDialogRef, MatSlideToggleChange } from '@angular/material';
   styleUrls: ['./state-view.component.css']
 })
 export class StateViewComponent implements OnInit {
-  private status = false;
+  status = false;
   lstatus: string;
   clear: boolean;
   array = this.service.array;
  jsonobj = JSON.stringify(this.array);
  jsons = JSON.parse(this.jsonobj);
-    constructor(private service: StateService,
-                private Cservice: CountryService,
-                private notificationService: NotificationService,
+    constructor(public service: StateService,
+                public Cservice: CountryService,
+                public notificationService: NotificationService,
                 public dialogref: MatDialogRef<StateViewComponent>) { }
     ngOnInit() {
   this.service.getstate();

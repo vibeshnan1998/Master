@@ -10,15 +10,15 @@ import { CountryService } from 'src/app/services/country.service';
   styleUrls: ['./country-view.component.css']
 })
 export class CountryViewComponent implements OnInit {
-  private status = false;
+   status = false;
   lstatus: string;
   clear: boolean;
   array = this.service.array;
  jsonobj = JSON.stringify(this.array);
  jsons = JSON.parse(this.jsonobj);
-    constructor(private service: CountryService,
-                private Rservice: RegionService,
-                private notificationService: NotificationService,
+    constructor(public service: CountryService,
+                public Rservice: RegionService,
+                public notificationService: NotificationService,
                 public dialogref: MatDialogRef<CountryViewComponent>) { }
     ngOnInit() {
   this.service.getCountry();

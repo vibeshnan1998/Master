@@ -12,12 +12,12 @@ import { CountryViewComponent } from 'src/app/country-list/country-view/country-
 })
 export class CityViewComponent implements OnInit {
 
-  private status = false;
+  public status = false;
   lstatus: string;
   clear: boolean;
-    constructor(private service: CityService,
-                private Sservice: StateService,
-                private notificationService: NotificationService,
+    constructor(public service: CityService,
+                public Sservice: StateService,
+                public notificationService: NotificationService,
                 public dialogref: MatDialogRef<CountryViewComponent>) { }
     ngOnInit() {
   this.service.getCity();

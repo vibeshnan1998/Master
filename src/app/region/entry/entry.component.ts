@@ -13,17 +13,17 @@ import { ConfirmDialogComponent } from 'src/app/dialog/confirm-dialog/confirm-di
   styleUrls: ['./entry.component.css']
 })
 export class EntryComponent implements OnInit {
-  private status = true;
+   status = true;
   lstatus: string;
   clear: boolean;
   array = this.service.array;
   jsonobj = JSON.stringify(this.array);
   jsons = JSON.parse(this.jsonobj);
-  constructor(private service: RegionService,
-              private notificationService: NotificationService,
+  constructor(public service: RegionService,
+              public notificationService: NotificationService,
               public dialogref: MatDialogRef<EntryComponent>,
               public dialogreff: MatDialogRef<ConfirmDialogComponent>,
-              private cdialog: ConfirmService) {
+              public cdialog: ConfirmService) {
   }
   ngOnInit() {
     this.service.getRegion();
