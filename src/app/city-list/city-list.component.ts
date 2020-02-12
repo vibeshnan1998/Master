@@ -16,8 +16,8 @@ export class CityListComponent implements OnInit {
               private dialog: MatDialog) { }
 listdata: MatTableDataSource<any>;
 displayedcolumns: string[] = ['statename', 'code', 'description', 'status', 'actions'];
-@ViewChild(MatSort, {static: false}) sort: MatSort;
-@ViewChild(MatPaginator, {static: false}) paginator: MatPaginator;
+@ViewChild(MatSort) sort: MatSort;
+@ViewChild(MatPaginator) paginator: MatPaginator;
 searchkey: string;
 ngOnInit() {
 this.service.getCity().subscribe(

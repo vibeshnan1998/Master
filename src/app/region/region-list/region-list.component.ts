@@ -24,8 +24,8 @@ export class RegionListComponent implements OnInit {
               private httpService: HttpClient) { }
 listdata: MatTableDataSource<any>;
 displayedcolumns: string[] = ['code', 'description', 'status', 'actions'];
-@ViewChild(MatSort, {static: false}) sort: MatSort;
-@ViewChild(MatPaginator, {static: false}) paginator: MatPaginator;
+@ViewChild(MatSort) sort: MatSort;
+@ViewChild(MatPaginator) paginator: MatPaginator;
 searchkey: string;
 
 ngOnInit() {

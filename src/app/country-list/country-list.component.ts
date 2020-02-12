@@ -19,8 +19,8 @@ export class CountryListComponent implements OnInit {
 regi = this.Rservice.array;
 listdata: MatTableDataSource<any>;
 displayedcolumns: string[] = ['regionname', 'code', 'description', 'status', 'actions'];
-@ViewChild(MatSort, {static: false}) sort: MatSort;
-@ViewChild(MatPaginator, {static: false}) paginator: MatPaginator;
+@ViewChild(MatSort) sort: MatSort;
+@ViewChild(MatPaginator) paginator: MatPaginator;
 searchkey: string;
 filterargs = {status: 'true'};
 ngOnInit() {
