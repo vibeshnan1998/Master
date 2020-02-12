@@ -33,7 +33,9 @@ const array = list.map(item => {
   regionname,
   ...item.payload.val()
 };
+
 });
+console.log(array);
 this.listdata = new MatTableDataSource(array);
 this.listdata.sort = this.sort;
 this.listdata.paginator = this.paginator;

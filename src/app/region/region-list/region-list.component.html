@@ -13,6 +13,8 @@
         <mat-toolbar color="primary" class="mat-toool">
       <span>{{'settings.region' | translate}}</span>
       <span class="fill-remainings"></span>
+      <button mat-raised-button  class="btn btn-dark btn-xs" (click)="downloadpdf()" ><mat-icon>save</mat-icon>PDF</button>
+      |
       <button mat-raised-button  class="btn btn-dark btn-xs" (click)="oncreate()"><mat-icon>note</mat-icon>create</button>
       </mat-toolbar><br>
 <div class="mat-elevation-z8">

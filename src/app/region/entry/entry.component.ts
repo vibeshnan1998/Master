@@ -39,7 +39,7 @@ export class EntryComponent implements OnInit {
     }
   }
   onclear() {
-    if (this.service.form.get('$key').value) {
+    if (this.service.form.get('Id').value) {
       this.clear = true;
     } else {
       if (!this.service.form.get('code').value && !this.service.form.get('description').value) {
@@ -52,7 +52,7 @@ export class EntryComponent implements OnInit {
   }
   onsubmit() {
     if (this.service.form.valid) {
-      if (this.service.form.get('$key').value) {
+      if (this.service.form.get('Id').value) {
         this.service.updateregion(this.service.form.value);
         this.service.form.reset();
         this.dialogref.close();
@@ -67,11 +67,11 @@ export class EntryComponent implements OnInit {
     }
   }
   onclose() {
-    this.cdialog.openconfirmdialog('save and close')
+    /* this.cdialog.openconfirmdialog('save and close')
       .afterClosed().subscribe(res => {
     if (res) {
       if (this.service.form.valid) {
-        if (this.service.form.get('$key').value) {
+        if (this.service.form.get('Id').value) {
           this.service.updateregion(this.service.form.value);
           this.service.form.reset();
           this.dialogref.close();
@@ -88,7 +88,7 @@ export class EntryComponent implements OnInit {
       this.dialogreff.close();
     }
   });
-    this.dialogreff.close();
+    this.dialogreff.close(); */
   }
   /* code() {
               {
