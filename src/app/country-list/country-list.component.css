@@ -1,0 +1,24 @@
+.make-red {
+    color: rgb(255, 117, 117);
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    font-weight: bolder;
+    text-transform: uppercase;
+}
+.make-purple {
+    color: rgb(50, 87, 255);
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    font-weight: bolder;
+    text-transform: uppercase;
+}
+.make-grey {
+    color: rgb(158, 151, 151);
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    font-weight: bolder;
+    text-transform: uppercase;
+}
+.make-black {
+    color: rgb(0, 0, 0);
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    font-weight: bolder;
+    text-transform: uppercase;
+}

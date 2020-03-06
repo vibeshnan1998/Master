@@ -1,76 +1,93 @@
 import { Injectable } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { AngularFireDatabase, AngularFireList } from 'angularfire2/database';
 import * as _ from 'lodash';
+import { HttpClient } from '@angular/common/http';
+import { RegionService } from './region.service';
+
+export class Region {
+  Id: number;
+  RegionId: number;
+  Code: string;
+  Description: string;
+  Active: boolean;
+}
 
 @Injectable({
   providedIn: 'root'
 })
 export class CountryService {
 array = [];
-  constructor(private firebase: AngularFireDatabase) {
-    this.countrylist = this.firebase.list('countries');
-    this.countrylist.snapshotChanges().subscribe(
-      list => {
-        this.array = list.map( item => {
-          return {
-            $key: item.key,
-            ...item.payload.val()
-          };
-        });
-      });
+country;
+private apiurl='http://localhost:65177/api/countries';
+pattern = '^[a-zA-Z ]+$';
+public clear;
+jsonobj = JSON.stringify(this.array);
+
+  constructor(private http: HttpClient,
+              private Rservice: RegionService) {
+              
    }
-  countrylist: AngularFireList<any>;
-  pattern = '^[a-zA-Z ]+$';
-  public clear;
-  jsonobj = JSON.stringify(this.array);
+        
+   //country
   countryform: FormGroup = new FormGroup ({
-    $key: new FormControl(null),
-    region: new FormControl(0),
-    code: new FormControl('', [Validators.required, Validators.pattern(this.pattern)]),
-    description: new FormControl('', [Validators.required, Validators.pattern(this.pattern)]),
-    status: new FormControl('', Validators.required)
+    Id: new FormControl(0),
+    RegionId: new FormControl([], Validators.required),
+    Code: new FormControl('', [Validators.required, Validators.pattern(this.pattern)]),
+    Description: new FormControl('', [Validators.required, Validators.pattern(this.pattern)]),
+    Active: new FormControl(true),
+    Region: new FormControl([])
   });
+
+
   initializeForm() {
     this.countryform.setValue({
-      $key: null,
-      region: 0,
-      code: '',
-      description: '',
-      status: true
+      Id: 0,
+      RegionId: 0,
+      Code: '',
+      Description: '',
+    Active: true
     });
   }
   getCountry()  {
-    this.countrylist = this.firebase.list('countries');
-    return this.countrylist.snapshotChanges();
+    return this.http.get(this.apiurl);
   }
-  insertcountry(country: { region: any; code: any; description: any; status: boolean; }) {
-    this.countrylist.push({
-      region: country.region,
-      code: country.code,
-      description: country.description,
-      status: country.status
-    });
+  getRegion(Id) {
+    return this.http.get('http://localhost:65177/api/regions/api/returncheckcode?Code='+ Id);
+  }
+  insertcountry(country) {
+    return this.http.post(this.apiurl,country);
+}
+getCountryById(Id) {
+  return this.http.get<Region>(this.apiurl+'/'+ Id);
 }
 updatecountry(country) {
-  this.countrylist.update(country.$key, {
-    region: country.region,
-    code: country.code,
-    description: country.description,
-    status: country.status
+  return this.http.put(this.apiurl +'/'+ country.Id,country);
+}
+deletecountry(Id) {
+  return this.http.delete(this.apiurl +'/'+Id);
+}
+populate(Id) {
+  this.getCountryById(Id).subscribe( Country => {this.country = Country},
+  err => console.log(err));
+  console.log(this.country);
+  let countryset = { Id: this.country.Id,
+                     Code: this.country.Code,
+                     Desciptions: this.country.Desciption,
+                     RegionId: {
+                       Id: this.country.Region.Id,
+                       Code: this.country.Region.Code,
+                       Description: this.country.Description},
+                     Region: 'd'
+                     };
+                     this.countryform.setValue(countryset);
   }
-    );
-}
-populate(country: { $key: any; region: any; code: any; description: any; status: boolean; }) {
-  this.countryform.setValue(_.omit(country, 'regionname'));
-}
-getcountryName($key) {
-  if ($key === '0') {
+getcountryName(Id) {
+  if (Id == 0) {
     return '';
   } else {
       return _.find(this.array, (obj) => {
-         return obj.$key === $key;
-        }).description;
+         return obj.Id === Id;
+        }).Description;
     }
 }
 

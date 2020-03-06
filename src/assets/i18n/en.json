@@ -12,6 +12,7 @@
     "french" : "French",
     "about" : "About",
     "login": "Login",
-    "logout":"Logout"
+    "logout":"Logout",
+    "customerlists": "Customer List"
 }
 }

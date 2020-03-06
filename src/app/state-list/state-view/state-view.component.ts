@@ -2,7 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { StateService} from 'src/app/services/state.service';
 import { CountryService } from 'src/app/services/country.service';
 import { NotificationService } from 'src/app/services/notification.service';
-import { MatDialogRef, MatSlideToggleChange } from '@angular/material';
+import { MatDialogRef } from '@angular/material/dialog';
+import { MatSlideToggleChange } from '@angular/material/slide-toggle';
 
 @Component({
   selector: 'app-state-view',

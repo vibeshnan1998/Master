@@ -12,6 +12,7 @@
         "french": "French",
         "about": "Sur",
         "login": "S'identifier",
-        "logout":"Se déconnecter"
+        "logout":"Se déconnecter",
+        "customerlists": "Liste de clients"
     }
 }

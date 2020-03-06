@@ -1,3 +1,4 @@
+ 
 <mat-toolbar id="mainToolbar" color="primary">
   <mat-icon (click)="ontoolbarevent()" id="toolbarMenu">subject</mat-icon>
   VIBESHNAN
@@ -5,7 +6,7 @@
   <app-login style="padding-bottom: 10px;"></app-login>
 </mat-toolbar>
 
-<mat-sidenav-container id="sidenavContainer" fullscreen>
+<mat-sidenav-container id="sidenavContainer" fullscreen [class.alter]="otherTheme">
   <mat-sidenav mode="side" #sidenav id="sidenav" color="warning" [class.menu-open]="isMenuOpen"
     [class.menu-close]="!isMenuOpen" opened>
 
@@ -71,6 +72,27 @@
         </button>
       </mat-list-item>
       
+    <mat-list-item (click)="toggletheme()">
+     <button class="menu-item"  title="theme" mat-flat-button>
+       <mat-icon>settings_application</mat-icon>THEME
+     <mat-icon *ngIf="!showtheme">chevron_right</mat-icon>
+     <mat-icon *ngIf="showtheme">expand_more</mat-icon>
+   </button>
+   </mat-list-item>
+   <mat-list-item *ngIf="showtheme">
+     <button class="menu-item" mat-flat-button (click)="changeTheme()"><mat-icon>cdcddc</mat-icon>change Theme</button>
+     </mat-list-item>
+
+     <mat-list-item (click)="togglebusiness()">
+      <button class="menu-item"  title="theme" mat-flat-button>
+        <mat-icon>work</mat-icon>Business Users
+      <mat-icon *ngIf="!showbusiness">chevron_right</mat-icon>
+      <mat-icon *ngIf="showbusiness">expand_more</mat-icon>
+    </button>
+    </mat-list-item>
+    <mat-list-item *ngIf="showbusiness">
+      <button class="menu-item" mat-flat-button routerLink="/customer-list"><mat-icon>sports_handball</mat-icon>Customers/Clients</button>
+      </mat-list-item>
 
 
     </mat-list>

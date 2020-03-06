@@ -13,31 +13,32 @@
         <mat-toolbar color="primary" class="mat-toool">
       <span>{{'settings.region' | translate}}</span>
       <span class="fill-remainings"></span>
-      <button mat-raised-button  class="btn btn-dark btn-xs" (click)="downloadpdf()" ><mat-icon>save</mat-icon>PDF</button>
+      <button mat-raised-button  class="btn btn-dark btn-xs"  (click)="buttonClick()"><mat-icon>autorenew</mat-icon></button>
       |
       <button mat-raised-button  class="btn btn-dark btn-xs" (click)="oncreate()"><mat-icon>note</mat-icon>create</button>
       </mat-toolbar><br>
-<div class="mat-elevation-z8">
-    <mat-table [dataSource]="listdata" matSort>
-    <ng-container matColumnDef="code" >
+<div class=" .exampledatasource mat-elevation-z8">
+    <mat-table [dataSource]="listdata" #myTable matSort matSortActive="Active" matSortStart="desc">
+    <ng-container matColumnDef="Code" >
         <mat-header-cell *matHeaderCellDef mat-sort-header>Code</mat-header-cell>
-        <mat-cell *matCellDef="let element" style="text-transform: uppercase;">{{element.code}}</mat-cell>
+        <mat-cell *matCellDef="let element" [ngClass]="{'make-grey': element.Active == false,'make-black': element.Active==true}">{{element.Code}}</mat-cell>
     </ng-container>
-    <ng-container matColumnDef="description" >
+    <ng-container matColumnDef="Description" >
             <mat-header-cell *matHeaderCellDef mat-sort-header>Description</mat-header-cell>
-            <mat-cell *matCellDef="let element" style="text-transform: capitalize;">{{element.description}}</mat-cell>
+            <mat-cell *matCellDef="let element" [ngClass]="{'make-grey': element.Active == false,'make-black': element.Active==true}">{{element.Description}}</mat-cell>
         </ng-container>
 
         <span class="fill-remainings"></span>
 
-        <ng-container matColumnDef="status" >
+        <ng-container matColumnDef="Active" >
                 <mat-header-cell *matHeaderCellDef mat-sort-header>Active</mat-header-cell>
-                <mat-cell *matCellDef="let element">{{element.status}}</mat-cell>
+                <mat-cell *matCellDef="let element" [ngClass]="{'make-red': element.Active == false,'make-purple': element.Active==true}">{{element.Active}}</mat-cell>
             </ng-container>
             <ng-container matColumnDef="actions">
                     <mat-header-cell *matHeaderCellDef></mat-header-cell>
                     <mat-cell *matCellDef="let row">
                         <button mat-icon-button title="edit" (click)="onEdit(row)"><mat-icon>launch</mat-icon></button>
+                        <button mat-icon-button title="delete" (click)="ondelete(row.Id)"><mat-icon>delete</mat-icon></button>
                     </mat-cell>
                 </ng-container>
                 <ng-container matColumnDef="Loading" colspan="6">
@@ -51,10 +52,10 @@
                             </mat-footer-cell>
                             
                         </ng-container>
-   <mat-header-row *matHeaderRowDef="displayedcolumns"></mat-header-row>
-   <mat-row *matRowDef="let row; columns:displayedcolumns"></mat-row> 
-   <mat-footer-row *matFooterRowDef="['Loading']" [ngClass]="{'hide': listdata!=null}"></mat-footer-row>
-   <mat-footer-row *matFooterRowDef="['nodata']" [ngClass]="{'hide':!(listdata!=null && listdata.data.length==0)}"></mat-footer-row>
+   <mat-header-row *matHeaderRowDef="displayedcolumns; sticky:true"></mat-header-row>
+   <mat-row *matRowDef="let row; columns:displayedcolumns"  ></mat-row> 
+   <mat-footer-row *matFooterRowDef="['Loading'];sticky:true" [ngClass]="{'hide': listdata!=null}"></mat-footer-row>
+   <mat-footer-row *matFooterRowDef="['nodata'];sticky:true" [ngClass]="{'hide':!(listdata!=null && listdata.data.length==0)}"></mat-footer-row>
 </mat-table>
 <mat-paginator [pageSizeOptions]="[5,10,15,20]" [pageSize]="5" showFirstLastButtons> </mat-paginator>
 </div>

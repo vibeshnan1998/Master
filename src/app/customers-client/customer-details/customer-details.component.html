@@ -1,0 +1,169 @@
+<form [formGroup]="customer_form" (ngSubmit)="onsubmit()">
+    <div class="container ">
+        
+        <div class="row">
+            <div class="col" mat-dialog-title>
+                <mat-toolbar  color="primary" class="tool ">
+                    <span>Customer Details</span>
+                    <span class="fill-remainings"></span>
+                    <button mat-mini-fab (click)="dialogclose()"><mat-icon>close</mat-icon></button>
+                </mat-toolbar>
+            </div>
+        </div>
+        <mat-dialog-content>
+        <div class="row">
+
+            <div class="col-md-4">
+                <mat-form-field class="matformfield">
+                    <mat-label>Customer Name</mat-label>
+                    <input  formControlName="customername" matInput placeholder="customer name" class="example-form">
+                    <mat-error *ngIf="customer_form.controls['customername'].errors?.required">the field should not be empty</mat-error>
+               </mat-form-field>
+            </div>
+            <div class="col-md-4">
+                <mat-form-field>
+                    <mat-select formControlName="customertype" placeholder="Customer Type" disableOptionCentering panelClass="myPanelClass">
+                        
+                      <mat-option  value="">
+                        None
+                      </mat-option>
+                        <mat-option  value="agreement part">
+                        Agreement part
+                      </mat-option>
+
+                    </mat-select>    
+                    <mat-error *ngIf="customer_form.controls['customertype'].errors?.required">the field should not be empty</mat-error>                
+                  </mat-form-field>
+            </div>
+            <div class="col-md-4">
+                <mat-form-field>
+                    <mat-label>Status</mat-label>
+                    <mat-select formControlName="status" placeholder="Status"  disableOptionCentering panelClass="myPanelClass">
+                            <mat-option value="">None</mat-option>
+                            <mat-option value="approved">Approved</mat-option>
+                            <mat-option value="black listed">Black Listed</mat-option>
+                            <mat-option value="prospect">Prospect</mat-option>
+                    </mat-select>
+                    <mat-error *ngIf="customer_form.controls['status'].errors?.required">the field should not be empty</mat-error>                
+                </mat-form-field>
+            </div>
+        </div> 
+        <div class="row justify-content-center">
+            <div class="col-md-5">
+                <mat-form-field>
+                    <mat-label>Country</mat-label>
+                    <mat-select formControlName="country" placeholder="Country"  disableOptionCentering panelClass="myPanelClass">
+                            <mat-option value="">None</mat-option>
+                            <mat-option value="india">India</mat-option>
+                            </mat-select>
+                            <mat-error *ngIf="customer_form.controls['country'].errors?.required">the field should not be empty</mat-error>                
+                            </mat-form-field><mat-icon class="iconAdd" (click)="countryadd()">add_rounded</mat-icon>
+            </div>
+            <div class="col-md-5">
+                <mat-form-field>
+                    <mat-label>Location</mat-label>
+                    <mat-select formControlName="location" placeholder="Location"  disableOptionCentering panelClass="myPanelClass">
+                            <mat-option value="">None</mat-option>
+                            <mat-option value="tamil nadu">Tamil Nadu</mat-option>
+                            </mat-select>
+                            <mat-error *ngIf="customer_form.controls['location'].errors?.required">the field should not be empty</mat-error>                
+                            </mat-form-field><mat-icon class="iconAdd" (click)="locationadd()">add_outline</mat-icon>
+            </div>
+            
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <mat-form-field class="example-form">
+                    <mat-label>Website</mat-label>
+                    <input  formControlName="website" matInput placeholder="For Eg: 'www.comali.com'" class="example-form">
+                    <mat-error *ngIf="customer_form.controls['website'].errors?.required">the field should not be empty</mat-error>
+               </mat-form-field>
+            </div>
+            <div class="col-md-6">
+                <mat-form-field class="example-form">
+                    <mat-label>Email</mat-label>
+                    <input  formControlName="email" matInput placeholder="For Eg: 'vibi005@gmail.com'" class="example-form">
+                    <mat-error *ngIf="customer_form.controls['email'].errors?.required">the field should not be empty</mat-error>
+               </mat-form-field>
+            </div>
+        </div>
+        <div class="row justify-content-around">
+            <div class="col-md-4">
+                <mat-form-field>
+                    <mat-label>Controlling Office</mat-label>
+                    <mat-select formControlName="controllingoffice" placeholder="Controlling Office"  disableOptionCentering panelClass="myPanelClass">
+                            <mat-option value="">None</mat-option>
+                            <mat-option value="indaia">Indaia</mat-option>
+                            </mat-select>
+                            <mat-error *ngIf="customer_form.controls['controllingoffice'].errors?.required">the field should not be empty</mat-error>                
+                            </mat-form-field>
+            </div>
+            <div class="col-md-4">
+                <mat-form-field>
+                    <mat-label>Afflicates</mat-label>
+                    <mat-select formControlName="afflicates" placeholder="search"  disableOptionCentering panelClass="myPanelClass">
+                            <mat-option value="">None</mat-option>
+                            <mat-option value="seaknots">Seaknots</mat-option>
+                            </mat-select>
+                            <mat-error *ngIf="customer_form.controls['afflicates'].errors?.required">the field should not be empty</mat-error>                
+                            </mat-form-field>
+            </div>
+            <div class="col-md-4">
+                <mat-form-field>
+                    <mat-label>Tax ID</mat-label>
+                    <input  formControlName="taxid" matInput placeholder="enter tax id" class="example-form">
+                    <mat-error *ngIf="customer_form.controls['taxid'].errors?.required">the field should not be empty</mat-error>
+               </mat-form-field>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <mat-form-field  class="example-form">
+                    <mat-label>Address</mat-label>
+                    <textarea  formControlName="address" matInput placeholder="door no: 4,4th street,ch-11,india"></textarea>
+                    <mat-error *ngIf="customer_form.controls['address'].errors?.required">the field should not be empty</mat-error>
+               </mat-form-field>
+            </div>
+            <div class="col-md-6">
+                <mat-form-field  class="example-form">
+                    <mat-label>Comments</mat-label>
+                    <textarea  formControlName="comments" matInput placeholder="enter something"></textarea>
+                    <mat-error *ngIf="customer_form.controls['comments'].errors?.required">the field should not be empty</mat-error>
+               </mat-form-field>
+            </div>            
+        </div>
+        <div class="row">
+            <div class="col-md-4">
+                <mat-form-field class="example-form-full-width">
+                    <mat-label>Short Name</mat-label>
+                    <input  formControlName="shortname" matInput placeholder="For Eg: vibe005" class="example-form">
+                    <mat-error *ngIf="customer_form.controls['shortname'].errors?.required">the field should not be empty</mat-error>
+               </mat-form-field>
+            </div>
+            <div class="col-md-4">
+                <mat-label><strong>Tax Exempted </strong></mat-label><br>
+                <mat-slide-toggle  [checked]="status"
+                          class="example-margin" color="primary"  tabindex="4" (change)="toggle($event)"
+                          formControlName="taxexemptes" value= "true">
+                          <label class="labeltoggle">{{lstatus}}</label>
+                    </mat-slide-toggle>
+            </div>
+        </div>
+        <div class="row justify-content-center">
+            <div class="col-md-4">
+                <button mat-raised-button type="submit" color="primary" [disabled]="customer_form.invalid">
+                <mat-icon>save</mat-icon>    Submit
+                </button>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-5">
+                <app-state-list></app-state-list>
+            </div>
+            <div class="colo-md-5">
+                <app-city-list></app-city-list>
+            </div>
+        </div>
+    </mat-dialog-content>
+    </div>
+</form>

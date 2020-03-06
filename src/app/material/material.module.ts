@@ -1,56 +1,69 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import * as Material from '@angular/material';
-import { MatSelectModule } from '@angular/material';
-
-
-
-@NgModule({
+import {MatButtonModule} from '@angular/material/button';
+import {  MatGridListModule } from '@angular/material/grid-list';
+import {  MatFormFieldModule } from '@angular/material/form-field';
+import {  MatInputModule } from '@angular/material/input';
+import {  MatSlideToggleModule } from '@angular/material/slide-toggle';
+import {  MatCardModule } from '@angular/material/card';
+import {  MatSnackBarModule } from '@angular/material/snack-bar';
+import {  MatTableModule } from '@angular/material/table';
+import {  MatIconModule } from '@angular/material/icon';
+import {  MatSortModule } from '@angular/material/sort';
+import {  MatPaginatorModule } from '@angular/material/paginator';
+import {  MatDialogModule } from '@angular/material/dialog';
+import {  MatMenuModule } from '@angular/material/menu';
+import {  MatBadgeModule } from '@angular/material/badge';
+import {  MatSidenavModule } from '@angular/material/sidenav';
+import {  MatListModule } from '@angular/material/list';
+import {  MatToolbarModule } from '@angular/material/toolbar';
+import { MatSelectModule } from '@angular/material/select';
+@NgModule({ 
   declarations: [],
   imports: [
     CommonModule,
-    Material.MatToolbarModule,
-    Material.MatGridListModule,
-    Material.MatFormFieldModule,
-    Material.MatInputModule,
-    Material.MatButtonModule,
-  Material.MatSlideToggleModule,
-  Material.MatCardModule,
-  Material.MatSnackBarModule,
-  Material.MatTableModule,
-  Material.MatIconModule,
-  Material.MatSortModule,
-  Material.MatPaginatorModule,
-  Material.MatDialogModule,
-  Material.MatMenuModule,
-  Material.MatSelectModule,
-  Material.MatSidenavModule,
-  Material.MatListModule,
-  Material.MatButtonModule,
-  Material.MatBadgeModule,
-  Material.MatCardModule
+    MatToolbarModule,
+    MatGridListModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatButtonModule,
+  MatSlideToggleModule,
+  MatCardModule,
+  MatSnackBarModule,
+  MatTableModule,
+  MatIconModule,
+  MatSortModule,
+  MatPaginatorModule,
+  MatDialogModule,
+  MatMenuModule,
+  MatSelectModule,
+  MatSidenavModule,
+  MatListModule,
+  MatButtonModule,
+  MatBadgeModule,
+  MatCardModule
   ],
   exports: [
-    Material.MatToolbarModule,
-    Material.MatGridListModule,
-    Material.MatFormFieldModule,
-    Material.MatInputModule,
-    Material.MatButtonModule,
-    Material.MatSlideToggleModule,
-    Material.MatCardModule,
-    Material.MatSnackBarModule,
-    Material.MatTableModule,
-    Material.MatIconModule,
-    Material.MatSortModule,
-    Material.MatPaginatorModule,
-  Material.MatDialogModule,
-  Material.MatMenuModule,
-  Material.MatSelectModule,
-  Material.MatSidenavModule,
-  Material.MatListModule,
-  Material.MatButtonModule,
-  Material.MatBadgeModule,
-  Material.MatCardModule
+    MatGridListModule,
+    MatToolbarModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatButtonModule,
+    MatSlideToggleModule,
+    MatCardModule,
+    MatSnackBarModule,
+    MatTableModule,
+    MatIconModule,
+    MatSortModule,
+    MatPaginatorModule,
+  MatDialogModule,
+ MatMenuModule,
+  MatSelectModule,
+  MatSidenavModule,
+ MatListModule,
+  MatButtonModule,
+  MatBadgeModule,
+  MatCardModule
    ]
 })
 export class MaterialModule { }

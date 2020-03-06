@@ -3,7 +3,7 @@
 <form [formGroup]="service.form"  (submit)="onsubmit()" min-width="200px">
    
     <mat-toolbar color="primary" width="auto">
-            <span>{{service.form.controls['Id'].value? "Modify Region":"New Region"}}</span>
+            <span>Region</span>
         
     <span class="fill-remainings"></span>   
     <span>  <button mat-button matSuffix mat-icon-button arial-label="Clear" tabindex="1" (click)="onclose()"><mat-icon>close</mat-icon></button></span>      
@@ -13,23 +13,23 @@
             <div class="controles-container">
                 <input formControlName="Id" type="hidden">
                 <mat-form-field>
-                    <input maxlength="3" formControlName="code" matInput placeholder="Code*"  tabindex="2" autocomplete="off">
-                    <mat-error *ngIf="service.form.controls['code'].errors?.required">the field should not be empty</mat-error>
-                    <mat-error *ngIf="service.form.controls['code'].errors?.pattern">Enter only Alphabetic characters</mat-error>
-                   <!-- <mat-error *ngIf="service.form.controls['code'].errors.matchValues">username</mat-error> -->
+                    <input maxlength="6" formControlName="Code"  (keyup)= "service.checkcode()"matInput placeholder="Code*"  tabindex="2" autocomplete="off">
+                    <mat-error *ngIf="service.form.controls['Code'].errors?.required">the field should not be empty</mat-error>
+                    <mat-error *ngIf="service.form.controls['Code'].errors?.pattern">Enter only Alphabetic characters</mat-error>
+                    <mat-error *ngIf="service.form.controls['Code'].errors?.notUnique">Code already exist</mat-error>
                 </mat-form-field><br><br>
                 <mat-form-field>
-                    <input maxlength="40" formControlName="description" matInput placeholder="Description*" tabindex="3" autocomplete="off" >
-                    <mat-error *ngIf="service.form.controls['description'].errors?.required">the field should not be empty</mat-error>
-                    <mat-error *ngIf="service.form.controls['description'].errors?.pattern">Enter only  Alphabetic characters</mat-error>
+                    <input maxlength="50" formControlName="Description" matInput placeholder="Description*" tabindex="3" autocomplete="off" >
+                    <mat-error *ngIf="service.form.controls['Description'].errors?.required">the field should not be empty</mat-error>
+                    <mat-error *ngIf="service.form.controls['Description'].errors?.pattern">Enter only  Alphabetic characters</mat-error>
                 </mat-form-field>
                 
-                <h2 class="example-margin">Status</h2>
+                <h2 class="example-margin">Active</h2>
                 
-                    <mat-slide-toggle  [checked]="status"
-                          class="example-margin" color="primary"  tabindex="4" (change)="toggle($event)"
-                          formControlName="status" value= "true">
-                          <label class="labeltoggle">{{lstatus}}</label>
+                    <mat-slide-toggle
+                          class="example-margin" [checked]=lstatus color="primary"  tabindex="4" (change)="toggle($event)"
+                          formControlName="Active">
+                          <label class="labeltoggle">{{Active}}</label>
                     </mat-slide-toggle>
 
                     <div class="button-row">

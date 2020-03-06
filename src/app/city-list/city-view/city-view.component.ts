@@ -2,7 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { CityService } from 'src/app/services/city.service';
 import { StateService } from 'src/app/services/state.service';
 import { NotificationService } from 'src/app/services/notification.service';
-import { MatDialogRef, MatSlideToggleChange } from '@angular/material';
+import { MatDialogRef } from '@angular/material/dialog';
+import { MatSlideToggleChange } from '@angular/material/slide-toggle';
 import { CountryViewComponent } from 'src/app/country-list/country-view/country-view.component';
 
 @Component({

@@ -9,6 +9,7 @@ import { TranslateService } from '@ngx-translate/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit {
+  otherTheme = false;
   title = 'region';
   user: firebase.User;
   user1: firebase.User;
@@ -16,6 +17,8 @@ export class AppComponent implements OnInit {
   contentMargin = 240;
   showMenu = false;
   showMaster = false;
+  showtheme = false;
+  showbusiness =false
   constructor(private afauth: AngularFireAuth,
               private service: LoginService,
               public translate: TranslateService) {
@@ -28,6 +31,7 @@ export class AppComponent implements OnInit {
     this.afauth.authState.subscribe(user => {
         console.log(user);
         this.user = user;
+        sessionStorage.setItem('key', 'vibe');
       });
     this.service.getloggedinuser().subscribe( user => {
         console.log('updating picture...');
@@ -36,6 +40,9 @@ export class AppComponent implements OnInit {
   }
   useLanguage(language: string) {
     this.translate.use(language);
+}
+changeTheme() {
+  this.otherTheme = !this.otherTheme;
 }
   ontoolbarevent() {
     console.log('on toolbar toggle');
@@ -54,4 +61,11 @@ export class AppComponent implements OnInit {
  toggleMaster() {
   this.showMaster = !this.showMaster;
 }
+toggletheme() {
+  this.showtheme = !this.showtheme;
+}
+togglebusiness() {
+  this.showbusiness = !this.showbusiness;
+}
+
   }

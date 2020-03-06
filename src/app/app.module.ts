@@ -1,13 +1,12 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
-import 'hammerjs';
+import { NgModule, Injectable, ErrorHandler } from '@angular/core';
 import {MaterialModule} from './material/material.module';
 import { AppRoutingModule, RoutingComponents } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MatSliderModule} from '@angular/material/slider';
-import {MatButtonModule} from '@angular/material';
-
+import { MatButtonModule } from '@angular/material/button';
+import {LoggerModule , NgxLoggerLevel} from 'ngx-logger';
 import { EntryComponent } from './region/entry/entry.component';
 import { RegionService } from './services/region.service';
 import {ReactiveFormsModule, FormsModule} from '@angular/forms';
@@ -37,7 +36,27 @@ import {TranslateLoader, TranslateModule} from '@ngx-translate/core';
 import {TranslateHttpLoader} from '@ngx-translate/http-loader';
 import {HttpClient, HttpClientModule} from '@angular/common/http';
 import { ConfirmDialogComponent } from './dialog/confirm-dialog/confirm-dialog.component';
+import * as Sentry from '@sentry/browser';
+import { CustomerDetailsComponent } from './customers-client/customer-details/customer-details.component';
+import { CustomerListComponent } from './customers-client/customer-list/customer-list.component';
+import {NgxMatSelectSearchModule} from 'ngx-mat-select-search';
+import { SeaknotsComponent } from './seaknots/seaknots/seaknots.component';
+import { TablepipesPipe } from './pipes/tablepipes.pipe';
+Sentry.init({
+  dsn: 'https://ac83913309c54c5b9f53834270672743@sentry.io/2602228'
+});
 
+Sentry.configureScope((scope) => {
+  scope.setUser({ email : 'vishwavb005@gmail.com'});
+});
+@Injectable()
+export class SentryErrorHandler implements ErrorHandler {
+  constructor() {}
+  handleError(error) {
+    const eventId = Sentry.captureException(error.originalError || error);
+    Sentry.showReportDialog({ eventId });
+  }
+}
 @NgModule({
   declarations: [
     AppComponent,
@@ -55,6 +74,10 @@ import { ConfirmDialogComponent } from './dialog/confirm-dialog/confirm-dialog.c
     ToolbarComponent,
     LoginComponent,
     ConfirmDialogComponent,
+    CustomerDetailsComponent,
+    CustomerListComponent,
+    SeaknotsComponent,
+    TablepipesPipe,
   ],
   imports: [
     BrowserModule,
@@ -70,6 +93,7 @@ import { ConfirmDialogComponent } from './dialog/confirm-dialog/confirm-dialog.c
     FormsModule,
     AngularFireAuthModule,
     HttpClientModule,
+    NgxMatSelectSearchModule,
     TranslateModule.forRoot({
             loader: {
                 provide: TranslateLoader,
@@ -78,9 +102,9 @@ import { ConfirmDialogComponent } from './dialog/confirm-dialog/confirm-dialog.c
             }
         })
   ],
-  providers: [RegionService, CountryService, StateService, CityService, EntryComponent],
+  providers: [RegionService, CountryService, StateService, CityService, EntryComponent, ErrorHandler, SentryErrorHandler],
   bootstrap: [AppComponent],
-  entryComponents: [StateViewComponent, EntryComponent, CountryViewComponent, CityViewComponent, ConfirmDialogComponent]
+  entryComponents: [StateViewComponent, EntryComponent, CountryViewComponent, CityViewComponent, ConfirmDialogComponent, CustomerDetailsComponent]
 })
 export class AppModule { }
 // required for AOT compilation

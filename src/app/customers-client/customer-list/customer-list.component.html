@@ -11,39 +11,43 @@
     </div><br>
     
             <mat-toolbar color="primary" class="mat-toool">
-          <span>{{'settings.country' | translate}}</span>
+          <span>{{'settings.customerlists' | translate}}</span>
           <span class="fill-remainings"></span>
-          <button   mat-button matSuffix mat-icon-button arial-label="autorenew" (click)="buttonClick()"><mat-icon>autorenew</mat-icon></button>|
-          <button mat-raised-button class="btn btn-dark btn-xs" (click)="oncreate()"><mat-icon>note</mat-icon>create</button>
+          <button mat-raised-button  class="btn btn-dark btn-xs" (click)="oncreate()"><mat-icon>note</mat-icon>create</button>
           </mat-toolbar><br>
     <div class="mat-elevation-z8">
         <mat-table [dataSource]="listdata" matSort>
-            <ng-container matColumnDef="Region" >
-                <mat-header-cell *matHeaderCellDef mat-sort-header>Region</mat-header-cell>
-                <mat-cell *matCellDef="let element" [ngClass]="{'make-grey': element.Active == false,'make-black': element.Active==true}">{{element.Region.Code}}</mat-cell>
-            </ng-container>
-            
-        <ng-container matColumnDef="Code" >
+        <ng-container matColumnDef="customercode" >
             <mat-header-cell *matHeaderCellDef mat-sort-header>Code</mat-header-cell>
-            <mat-cell *matCellDef="let element" [ngClass]="{'make-grey': element.Active == false,'make-black': element.Active==true}">{{element.Code}}</mat-cell>
+            <mat-cell *matCellDef="let element" style="text-transform: uppercase;"></mat-cell>
         </ng-container>
-        <ng-container matColumnDef="Description" >
-                <mat-header-cell *matHeaderCellDef mat-sort-header >Description</mat-header-cell>
-                <mat-cell *matCellDef="let element" [ngClass]="{'make-grey': element.Active == false,'make-black': element.Active==true}">{{element.Description}}</mat-cell>
+        <ng-container matColumnDef="customername" >
+            <mat-header-cell *matHeaderCellDef mat-sort-header>Customer Name</mat-header-cell>
+                <mat-cell *matCellDef="let element" style="text-transform: capitalize;"></mat-cell>
             </ng-container>
     
-            <span class="fill-remainings"
-            ></span>
+            <span class="fill-remainings"></span>
     
-            <ng-container matColumnDef="Active" >
-                    <mat-header-cell *matHeaderCellDef mat-sort-header>Active</mat-header-cell>
-                    <mat-cell *matCellDef="let element" [ngClass]="{'make-red': element.Active == false,'make-purple': element.Active==true}">{{element.Active}}</mat-cell>
+            <ng-container matColumnDef="customertype" >
+                    <mat-header-cell *matHeaderCellDef mat-sort-header>Customer Type</mat-header-cell>
+                    <mat-cell *matCellDef="let element"></mat-cell>
                 </ng-container>
-                <ng-container matColumnDef="Actions">
+                <ng-container matColumnDef="location" >
+                    <mat-header-cell *matHeaderCellDef mat-sort-header>Location</mat-header-cell>
+                    <mat-cell *matCellDef="let element"></mat-cell>
+                </ng-container>
+                <ng-container matColumnDef="country" >
+                    <mat-header-cell *matHeaderCellDef mat-sort-header>Country</mat-header-cell>
+                    <mat-cell *matCellDef="let element"></mat-cell>
+                </ng-container>
+                <ng-container matColumnDef="controllingoffice" >
+                    <mat-header-cell *matHeaderCellDef mat-sort-header>Office Code</mat-header-cell>
+                    <mat-cell *matCellDef="let element"></mat-cell>
+                </ng-container>
+                <ng-container matColumnDef="actions">
                         <mat-header-cell *matHeaderCellDef></mat-header-cell>
                         <mat-cell *matCellDef="let row">
-                            <button mat-icon-button title="edit" (click)="onEdit(row.Id)"><mat-icon>launch</mat-icon></button>
-                            <button mat-icon-button title="delete" (click)="ondelete(row.Id)"><mat-icon>delete</mat-icon></button>
+                            <button mat-icon-button title="edit"><mat-icon>launch</mat-icon></button>
                         </mat-cell>
                     </ng-container>
                     <ng-container matColumnDef="Loading" colspan="6">

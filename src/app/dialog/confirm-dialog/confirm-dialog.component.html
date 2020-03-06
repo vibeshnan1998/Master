@@ -1,10 +1,17 @@
-<div class="confirm-dialog-container">
-    <div class="content-container">
-        <mat-icon id="close-icon" (click)="oncdclose()">close</mat-icon>
-        <span class="content-span full-width">{{data.message}}<br>
-        Do you want to save the record.</span>
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-4">
+            <img src="assets/img/54193bde50f6872bb613efbeaf9367c7.jpg">
+        </div>
     </div>
-    <button mat-flat-button id="yes-button"  [mat-dialog-close]="true"><strong>yes</strong></button>
-   <button mat-flat-button id="no-button" [mat-dialog-close]="false"><strong>No,close</strong></button>
-   <button mat-flat-button id="cancel-button" (click)="oncdclose()"><strong>Cancel</strong></button>
+    <div class="row justify-content-center"><div class="col"><span class="content-span full-width">{{data.message}}
+    </span></div></div>
+        <div class="row justify-content-center">
+            <div class="col-5">
+                <button  class="btn btn-primary btn-lg"  [mat-dialog-close]="true"><strong>yes</strong></button>
+            </div>
+            <div class="col-5">
+                <button  class="btn btn-danger btn-lg" [mat-dialog-close]="false"><strong>No</strong></button>
+            </div>
+        </div>
 </div>

@@ -3,7 +3,7 @@
 <form [formGroup]="service.countryform"  (submit)="onsubmit()" min-width="200px" min-height="300px">
    
     <mat-toolbar color="primary" width="auto">
-            <span>{{service.countryform.controls['$key'].value? "Modify Country":"New Country"}}</span>
+            <span>{{service.countryform.controls['Id'].value? "Modify Country":"New Country"}}</span>
         
      <span class="fill-remainings"></span>   
      <span>  <button mat-button matSuffix mat-icon-button arial-label="Clear" tabindex="1" (click)="onclose()"><mat-icon>close</mat-icon></button></span>      
@@ -12,35 +12,39 @@
     <mat-grid-list cols="1" rowHeight="300px" min-width="100px">
         <mat-grid-tile>
             <div class="controles-container"> 
-                <input formControlName="$key" type="hidden">
+                <input formControlName="Id" type="hidden">
                 <mat-form-field>
-                     <mat-select formControlName="region" placeholder="Regioin">
-                        <mat-option>None</mat-option>
+                     <mat-select formControlName="RegionId" placeholder="Region">
+                        
+                        <mat-option value="{{RegionId.Id}}">
+                           {{RegionId.Code}}-{{RegionId.Description}}
+                        </mat-option>
                         <ng-container  *ngFor = "let reg of Rservice.array" >
-                            <mat-option  *ngIf="reg.status != false" value ="{{reg.$key}}" tabindex="2">{{reg.code}}-{{reg.description}}</mat-option>
-                            <mat-error *ngIf="service.countryform.controls['region'].errors?.required">Field should not be empty</mat-error>
+                            <mat-option  *ngIf="reg.Active != false" value ="{{reg.Id}}" tabindex="2">{{reg.Code}}-{{reg.Description}}</mat-option>
                         </ng-container>
                         
                     </mat-select>
+                    <mat-error *ngIf="service.countryform.controls['RegionId'].errors?.required">Field should not be empty</mat-error>
                 </mat-form-field>
                 <mat-form-field>
-                    <input maxlength="3" formControlName="code" matInput placeholder="Code*" tabindex="3" autocomplete="off">
-                    <mat-error *ngIf="service.countryform.controls['code'].errors?.required">the field should not be empty</mat-error>
-                    <mat-error *ngIf="service.countryform.controls['code'].errors?.pattern">Enter only Alphabetic characters</mat-error>
+                    <input maxlength="3" formControlName="Code" matInput placeholder="Code*" tabindex="3" autocomplete="off">
+                    <mat-error *ngIf="service.countryform.controls['Code'].errors?.required">the field should not be empty</mat-error>
+                    <mat-error *ngIf="service.countryform.controls['Code'].errors?.pattern">Enter only Alphabetic characters</mat-error>
                 </mat-form-field>
                 <mat-form-field>
-                    <input maxlength="25" formControlName="description" matInput placeholder="Description*" tabindex="4" autocomplete="off">
-                    <mat-error *ngIf="service.countryform.controls['description'].errors?.required">the field should not be empty</mat-error>
-                    <mat-error *ngIf="service.countryform.controls['description'].errors?.pattern">Enter only Alphabetic characters</mat-error>
+                    <input maxlength="25" formControlName="Description" matInput placeholder="Description*" tabindex="4" autocomplete="off">
+                    <mat-error *ngIf="service.countryform.controls['Description'].errors?.required">the field should not be empty</mat-error>
+                    <mat-error *ngIf="service.countryform.controls['Description'].errors?.pattern">Enter only Alphabetic characters</mat-error>
                 </mat-form-field>
                 
-                <h2 class="example-margin">Status</h2>
+                <h2 class="example-margin">Active</h2>
                 
-                    <mat-slide-toggle  [checked]="status"
-                          class="example-margin" color="primary" tabindex="5" (change)="toggle($event)"
-                          formControlName="status" >
-                          <label class="labeltoggle">{{lstatus}}</label>
-                    </mat-slide-toggle>
+                <mat-slide-toggle
+                class="example-margin" [checked]=lstatus color="primary"  tabindex="4" (change)="toggle($event)"
+                formControlName="Active">
+                <label class="labeltoggle">{{Active}}</label>
+          </mat-slide-toggle>
+
 
                     <div class="button-row">                    
              <button mat-raised-button class="btn warning btn-xs" type="submit" tabindex="6" [disabled]="service.countryform.invalid" >Save</button>

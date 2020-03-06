@@ -1,6 +1,6 @@
 import { Component, OnInit, Inject } from '@angular/core';
-import {MatDialogRef} from '@angular/material';
-import {MAT_DIALOG_DATA} from '@angular/material';
+import { MatDialogRef } from '@angular/material/dialog';
+import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { RegionService } from 'src/app/services/region.service';
 @Component({
   selector: 'app-confirm-dialog',
@@ -18,11 +18,4 @@ export class ConfirmDialogComponent implements OnInit {
 oncdclose() {
   this.dialogreff.close(false);
 }
-/* yes() {
-this.service.onsubmit();
-}
-no() {
-  this.dialogreff.close();
-  this.service.onclose();
-} */
 }
