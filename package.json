@@ -32,7 +32,7 @@
     "faker": "^4.1.0",
     "firebase": "^7.6.2",
     "json-server": "^0.15.1",
-    "jspdf": "^1.5.3",
+    "jspdf": "^2.3.1",
     "jspdf-autotable": "^3.2.11",
     "loadash": "^1.0.0",
     "lodash": "^4.17.15",
